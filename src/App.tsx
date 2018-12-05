@@ -1,21 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 
-export default class App extends React.Component {
-  public render() {
-    return (
-      <View style={styles.container}>
-        <Text>Welcome to Initiative Tracker</Text>
-      </View>
-    );
-  }
-}
+import EncounterLayout from './layouts/encounter';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+import { configureStore } from './store';
+
+const store = configureStore();
+
+export default () => (
+  <Provider store={store}>
+    <EncounterLayout />
+  </Provider>
+);

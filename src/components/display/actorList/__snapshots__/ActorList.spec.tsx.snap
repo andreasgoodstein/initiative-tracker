@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the ActorList component renders 1`] = `
+<Component
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "paddingHorizontal": 15,
+        "width": "100%",
+      }
+    }
+  >
+    <Component>
+      List
+    </Component>
+  </Component>
+  <ScrollViewMock
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <Component
+      actor={
+        Object {
+          "initiativeBonus": 30,
+          "name": "Test Actor",
+        }
+      }
+      key="0"
+    />
+  </ScrollViewMock>
+</Component>
+`;

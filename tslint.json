@@ -1,8 +1,10 @@
 {
     "extends": [
-        "tslint:recommended"
+        "tslint:recommended",
+        "tslint-eslint-rules"
     ],
     "rules": {
-        "quotemark": [true, "single"]
+        "quotemark": [true, "single"],
+        "object-curly-spacing": [true, "always", {"arraysInObjects": false, "objectsInObjects": false}]
     }
 }

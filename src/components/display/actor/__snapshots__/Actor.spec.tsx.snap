@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Actor component renders 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#eee",
+      "borderColor": "#fff",
+      "borderWidth": 5,
+      "flexDirection": "row",
+      "height": 70,
+      "padding": 10,
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "paddingRight": 10,
+      }
+    }
+  >
+    Test Actor
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "paddingRight": 10,
+      }
+    }
+  >
+    30
+  </Component>
+</Component>
+`;
