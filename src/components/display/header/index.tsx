@@ -5,6 +5,6 @@ import styles from './styles';
 
 export default () => (
     <View style={styles.container}>
-        <Text>Header</Text>
+        <Text style={styles.title}>The Initiative Tracker {'\u2122'}</Text>
     </View>
 );

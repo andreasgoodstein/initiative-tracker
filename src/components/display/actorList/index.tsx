@@ -16,13 +16,17 @@ export default ({ items, removeActor }: {items: IActor[], removeActor(actor: IAc
 );
 
 const getSortedActorItems = (items: IActor[], removeActor: (actor: IActor) => void) => {
-    const sortedItems = items.filter((item) => item).sort((a, b) =>
-        (b.initiativeTotal || 0) - (a.initiativeTotal || 0));
+    const actor = items[0];
+    if (!actor) {
+        return [];
+    }
 
-    return sortedItems.map((item, index) => getActorHighlight(item, index, removeActor));
+    const sortedItems = items.filter((item) => item).sort(actor.sort);
+
+    return sortedItems.map((item, index) => getActorElement(item, index, removeActor));
 };
 
-const getActorHighlight = (item: IActor, index: number, removeActor: (actor: IActor) => void) => (
+const getActorElement = (item: IActor, index: number, removeActor: (actor: IActor) => void) => (
     <TouchableHighlight key={index} onPress={() => {removeActor(item); }}>
         <Actor actor={item} />
     </TouchableHighlight>

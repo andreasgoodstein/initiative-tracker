@@ -10,19 +10,21 @@ export default StyleSheet.create({
         borderWidth: 5,
         flexDirection: 'row',
         height: 70,
+        justifyContent: 'space-evenly',
         padding: 10,
         position: 'relative',
         width: '100%',
     },
 
+    highlighted: {
+        backgroundColor: '#aaa',
+    },
+
     actorStat: {
         ...fonts.p,
-        paddingRight: 10,
     },
 
     totalStat: {
         ...fonts.p,
-        position: 'absolute',
-        right: 15,
     },
 });

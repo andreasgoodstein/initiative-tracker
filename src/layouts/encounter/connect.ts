@@ -13,6 +13,7 @@ interface IDispatchState {
     handleAddActorAction(actor: IActor): void;
     handleRemoveActorAction(actor: IActor): void;
     handleRollForInitiative(): void;
+    handleHighlightNextActor(): void;
 }
 
 export type EncounterLayoutProps = IMappedState & IDispatchState;
@@ -24,6 +25,9 @@ export const mapState = (state: IApplicationState): IMappedState => ({
 export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
     handleAddActorAction: (actor) => {
         dispatch(actions.addActorAction(actor));
+    },
+    handleHighlightNextActor: () => {
+        dispatch(actions.highlightNextActor());
     },
     handleRemoveActorAction: (actor) => {
         dispatch(actions.removeActorAction(actor));

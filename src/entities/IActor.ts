@@ -1,4 +1,4 @@
-import rollForInitiative from '../logic/rollForInitiative';
+import rollDice from '../logic/rollDice';
 
 export default interface IActor {
     readonly id: number;
@@ -8,14 +8,19 @@ export default interface IActor {
     readonly initiativeRoll?: number;
     readonly initiativeTotal?: number;
 
+    hasActiveTurn: boolean;
+
     rollForInitiative(): void;
     clone(id: number | undefined): IActor;
+    sort(a: IActor, b: IActor): number;
 }
 
 export class Actor implements IActor {
     public readonly id: number;
     public readonly name: string;
     public readonly initiativeBonus: number;
+
+    public hasActiveTurn: boolean;
 
     private privateInitiativeRoll?: number;
     private privateInitiativeTotal?: number;
@@ -24,6 +29,8 @@ export class Actor implements IActor {
         this.id = id;
         this.name = name;
         this.initiativeBonus = initiativeBonus;
+
+        this.hasActiveTurn = false;
     }
 
     get initiativeRoll(): number | undefined {
@@ -35,11 +42,15 @@ export class Actor implements IActor {
     }
 
     public rollForInitiative(): void {
-        this.privateInitiativeRoll = rollForInitiative();
+        this.privateInitiativeRoll = rollDice(20);
         this.privateInitiativeTotal = this.privateInitiativeRoll + this.initiativeBonus;
     }
 
     public clone(id: number | undefined): Actor {
         return new Actor(id || this.id, this.name, this.initiativeBonus);
+    }
+
+    public sort(a: Actor, b: Actor): number {
+        return (b.initiativeTotal || 0) - (a.initiativeTotal || 0);
     }
 }

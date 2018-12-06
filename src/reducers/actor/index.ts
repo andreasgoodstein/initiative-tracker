@@ -2,10 +2,11 @@ import { Reducer } from 'redux';
 
 import IActor from '../../entities/IActor';
 import { ActorActionTypes, IActorAction } from './actions';
+import { getNextActiveActor, removeActorFromList } from './helpers';
 import initialState from './state';
 import { IActorState } from './state';
 
-const reducer: Reducer<IActorState> = (state = initialState, action = { type: '' } ) => {
+const reducer: Reducer<IActorState> = (state = initialState, action = { type: '' }) => {
     switch (action.type) {
 
         case ActorActionTypes.ADD_ACTOR:
@@ -21,7 +22,15 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
             return {
                 ...state,
                 actors: [
-                    ...state.actors.filter((actor) => !(actor.name === (action as IActorAction).action.name)),
+                    ...removeActorFromList(state.actors, (action as IActorAction).action),
+                ],
+            };
+
+        case ActorActionTypes.HIGHLIGHT_NEXT_ACTOR:
+            return {
+                ...state,
+                actors: [
+                    ...getNextActiveActor(state.actors),
                 ],
             };
 

@@ -8,4 +8,10 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'space-between',
     },
+
+    listHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+    },
 });
