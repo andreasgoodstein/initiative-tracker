@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { AnyAction, Dispatch } from 'redux';
 
 import IActor from '../../entities/IActor';
-import { actions, IActorAction, selectors } from '../../reducers/actor';
+import { actions, selectors } from '../../reducers/actor';
 import { IApplicationState } from '../../store/state';
 
 interface IMappedState {
@@ -12,6 +12,7 @@ interface IMappedState {
 interface IDispatchState {
     handleAddActorAction(actor: IActor): void;
     handleRemoveActorAction(actor: IActor): void;
+    handleRollForInitiative(): void;
 }
 
 export type EncounterLayoutProps = IMappedState & IDispatchState;
@@ -20,12 +21,15 @@ export const mapState = (state: IApplicationState): IMappedState => ({
     items: selectors.selectAllActors(state),
 });
 
-export const mapDispatch = (dispatch: Dispatch<IActorAction>): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
     handleAddActorAction: (actor) => {
         dispatch(actions.addActorAction(actor));
     },
     handleRemoveActorAction: (actor) => {
         dispatch(actions.removeActorAction(actor));
+    },
+    handleRollForInitiative: () => {
+        dispatch(actions.rollAllActors());
     },
 });
 

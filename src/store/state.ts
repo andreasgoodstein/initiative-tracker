@@ -6,10 +6,6 @@ export interface IApplicationState {
 
 export const initialState: IApplicationState = {
   actor: {
-    actors: [{
-      initiativeBonus: 45,
-      initiativeRoll: 3,
-      name: 'StateTestActor',
-    }],
+    actors: [],
   },
 };

@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 
 import IActor from '../../entities/IActor';
-import actions, { IActorAction } from './actions';
+import { ActorActionTypes, IActorAction } from './actions';
 import initialState from './state';
 import { IActorState } from './state';
 
 const reducer: Reducer<IActorState> = (state = initialState, action = { type: '' } ) => {
     switch (action.type) {
 
-        case actions.addActorAction({} as IActor).type:
+        case ActorActionTypes.ADD_ACTOR:
             return {
                 ...state,
                 actors: [
@@ -17,12 +17,21 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
                 ],
             };
 
-        case actions.removeActorAction({} as IActor).type:
+        case ActorActionTypes.REMOVE_ACTOR:
             return {
                 ...state,
                 actors: [
                     ...state.actors.filter((actor) => !(actor.name === (action as IActorAction).action.name)),
                 ],
+            };
+
+        case ActorActionTypes.ROLL_FOR_ALL_ACTORS:
+            return {
+                ...state,
+                actors: state.actors.map((actor) => {
+                    actor.rollForInitiative();
+                    return actor;
+                }),
             };
 
         default:

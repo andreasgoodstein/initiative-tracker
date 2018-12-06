@@ -10,8 +10,10 @@ export default StyleSheet.create({
     },
 
     button: {
+        alignItems: 'center',
         backgroundColor: 'red',
         flex: 1,
-        padding: 10,
+        justifyContent: 'center',
+        margin: 10,
     },
 });

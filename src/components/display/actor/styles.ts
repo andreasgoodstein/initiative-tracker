@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import fonts from '../../../styles/fonts';
 
@@ -11,6 +11,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         height: 70,
         padding: 10,
+        position: 'relative',
         width: '100%',
     },
 
@@ -21,6 +22,7 @@ export default StyleSheet.create({
 
     totalStat: {
         ...fonts.p,
-        alignSelf: 'flex-end',
+        position: 'absolute',
+        right: 15,
     },
 });
