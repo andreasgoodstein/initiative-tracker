@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/andreasgoodstein/initiative-tracker",
+    "description": "A simple Typescript app, meant to keeping track of initiative order in games such as D&D 5e"
   }
 }
