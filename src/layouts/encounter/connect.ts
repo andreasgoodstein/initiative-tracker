@@ -23,8 +23,8 @@ export const mapState = (state: IApplicationState): IMappedState => ({
 });
 
 export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
-    handleAddActorAction: (actor) => {
-        dispatch(actions.addActorAction(actor));
+    handleAddActorAction: () => {
+        dispatch(actions.tryAddActorAction());
     },
     handleHighlightNextActor: () => {
         dispatch(actions.highlightNextActor());

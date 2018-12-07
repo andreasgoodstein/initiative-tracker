@@ -30,7 +30,10 @@ export const getNextActiveActor = (actors: IActor[]): IActor[] => {
     return sortedActors;
 };
 
-export const removeActorFromList = (actors: IActor[], actorToRemove: IActor): IActor[] =>
-    actors.filter((item) => item.hasActiveTurn)[0].id === actorToRemove.id
+export const removeActorFromList = (actors: IActor[], actorToRemove: IActor): IActor[] => {
+    const activeActor = actors.filter((item) => item.hasActiveTurn);
+
+    return actorToRemove.id === (activeActor && activeActor[0] && activeActor[0].id)
         ? getNextActiveActor(actors).filter((item) => !(item.id === actorToRemove.id))
         : actors.filter((item) => !(item.id === actorToRemove.id));
+};

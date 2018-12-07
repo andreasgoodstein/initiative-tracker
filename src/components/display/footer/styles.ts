@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import colors, { white } from '../../../styles/colors';
+
+import components, { white } from '../../../styles/components';
 
 export default StyleSheet.create({
     container: {
@@ -11,15 +12,10 @@ export default StyleSheet.create({
     },
 
     button: {
-        ...colors.button,
-        alignItems: 'center',
-        borderRadius: 50,
-        justifyContent: 'center',
-        margin: 10,
-        width: 100,
+        ...components.button,
     },
 
     buttonText: {
-        color: white,
+        ...components.buttonText,
     },
 });

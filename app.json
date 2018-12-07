@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "initiative-tracker",
-    "slug": "initiative-tracker",
+    "name": "The Initiative Tracker",
+    "slug": "the-initiative-tracker",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [

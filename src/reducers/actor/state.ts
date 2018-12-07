@@ -3,13 +3,13 @@ import IActor from '../../entities/IActor';
 export interface IActorState {
     readonly actors: IActor[];
     readonly isAddingActor: boolean;
-    readonly rollingInitativeForActor?: number;
+    readonly isRollingInitiative: boolean;
 }
 
 const initialState: IActorState = {
     actors: [],
     isAddingActor: false,
-    rollingInitativeForActor: undefined,
+    isRollingInitiative: false,
 };
 
 export default initialState;

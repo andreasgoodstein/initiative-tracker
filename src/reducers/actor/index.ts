@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
 import IActor from '../../entities/IActor';
-import { ActorActionTypes, IActorAction } from './actions';
+import { ActorActionTypes, CombatActionTypes, GameActionTypes, IActorAction } from './actions';
 import { getNextActiveActor, removeActorFromList } from './helpers';
 import initialState from './state';
 import { IActorState } from './state';
@@ -16,6 +16,7 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
                     ...state.actors,
                     (action as IActorAction).action as IActor,
                 ],
+                isAddingActor: false,
             };
 
         case ActorActionTypes.REMOVE_ACTOR:
@@ -26,6 +27,14 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
                 ],
             };
 
+        case ActorActionTypes.UPDATE_ACTOR_ROLL:
+            console.log(action);
+            return {
+                ...state,
+                actors: action.action || [],
+                isRollingInitiative: false,
+            };
+
         case ActorActionTypes.HIGHLIGHT_NEXT_ACTOR:
             return {
                 ...state,
@@ -34,13 +43,16 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
                 ],
             };
 
-        case ActorActionTypes.ROLL_FOR_ALL_ACTORS:
+        case GameActionTypes.TRY_ADD_ACTOR:
             return {
                 ...state,
-                actors: state.actors.map((actor) => {
-                    actor.rollForInitiative();
-                    return actor;
-                }),
+                isAddingActor: true,
+            };
+
+        case CombatActionTypes.ROLL_FOR_ALL_ACTORS:
+            return {
+                ...state,
+                isRollingInitiative: true,
             };
 
         default:

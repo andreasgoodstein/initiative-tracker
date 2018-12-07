@@ -5,26 +5,29 @@ import generateNewActorId from '../../logic/idGenerator';
 export enum ActorActionTypes {
     ADD_ACTOR = '@@actor/ADD',
     REMOVE_ACTOR = '@@actor/REMOVE',
-    ROLL_FOR_ALL_ACTORS = '@@actor/ROLL_FOR_ALL',
+    UPDATE_ACTOR_ROLL = '@@actor/UPDATE_ROLL',
     HIGHLIGHT_NEXT_ACTOR = '@@actor/HIGHLIGHT_NEXT',
 }
 
 export enum GameActionTypes {
-    ROLL_FOR_PLAYER = '@@game/ROLL_FOR_PLAYER',
     TRY_ADD_ACTOR = '@@game/ADD_ACTOR',
+}
+
+export enum CombatActionTypes {
+    ROLL_FOR_ALL_ACTORS = '@@combat/ROLL_FOR_ALL',
 }
 
 export interface IActorAction extends AnyAction {
     action: IActor;
 }
 
+export interface IActorArrayAction extends AnyAction {
+    action: IActor[];
+}
+
 export default {
     tryAddActorAction: (): AnyAction => ({
         type: GameActionTypes.TRY_ADD_ACTOR,
-    }),
-
-    tryRollForPlayer: (): AnyAction => ({
-        type: GameActionTypes.ROLL_FOR_PLAYER,
     }),
 
     addActorAction: (actor: IActor): IActorAction => {
@@ -42,8 +45,13 @@ export default {
         type: ActorActionTypes.REMOVE_ACTOR,
     }),
 
+    updateActorRolls: (actors: IActor[]): IActorArrayAction => ({
+        action: actors,
+        type: ActorActionTypes.UPDATE_ACTOR_ROLL,
+    }),
+
     rollAllActors: (): AnyAction => ({
-        type: ActorActionTypes.ROLL_FOR_ALL_ACTORS,
+        type: CombatActionTypes.ROLL_FOR_ALL_ACTORS,
     }),
 
     highlightNextActor: (): AnyAction => ({

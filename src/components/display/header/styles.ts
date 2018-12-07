@@ -1,15 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import colors, { white } from '../../../styles/colors';
+import components, { white } from '../../../styles/components';
 
 export default StyleSheet.create({
     container: {
-        ...colors.header,
-        alignItems: 'flex-end',
-        flexDirection: 'row',
-        height: 60,
-        justifyContent: 'center',
-        width: '100%',
+        ...components.header,
     },
 
     title: {

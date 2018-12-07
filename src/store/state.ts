@@ -7,5 +7,7 @@ export interface IApplicationState {
 export const initialState: IApplicationState = {
   actor: {
     actors: [],
+    isAddingActor: false,
+    isRollingInitiative: false,
   },
 };

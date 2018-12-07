@@ -1,16 +1,13 @@
-import rollDice from '../logic/rollDice';
-
 export default interface IActor {
     readonly id: number;
     readonly name: string;
     readonly initiativeBonus: number;
 
-    readonly initiativeRoll?: number;
+    initiativeRoll?: number;
     readonly initiativeTotal?: number;
 
     hasActiveTurn: boolean;
 
-    rollForInitiative(): void;
     clone(id: number | undefined): IActor;
     sort(a: IActor, b: IActor): number;
 }
@@ -37,13 +34,17 @@ export class Actor implements IActor {
         return this.privateInitiativeRoll;
     }
 
-    get initiativeTotal(): number | undefined {
-        return this.privateInitiativeTotal;
+    set initiativeRoll(roll) {
+        if (!roll || isNaN(roll)) {
+            return;
+        }
+
+        this.privateInitiativeRoll = roll;
+        this.privateInitiativeTotal = parseInt(this.initiativeBonus, 10) + parseInt((roll || 0), 10);
     }
 
-    public rollForInitiative(): void {
-        this.privateInitiativeRoll = rollDice(20);
-        this.privateInitiativeTotal = this.privateInitiativeRoll + this.initiativeBonus;
+    get initiativeTotal(): number | undefined {
+        return this.privateInitiativeTotal;
     }
 
     public clone(id: number | undefined): Actor {
