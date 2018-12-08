@@ -35,10 +35,6 @@ export class Actor implements IActor {
     }
 
     set initiativeRoll(roll) {
-        if (!roll || isNaN(roll)) {
-            return;
-        }
-
         this.privateInitiativeRoll = roll;
         this.privateInitiativeTotal = parseInt(this.initiativeBonus, 10) + parseInt((roll || 0), 10);
     }
