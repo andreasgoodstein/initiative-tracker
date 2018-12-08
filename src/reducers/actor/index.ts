@@ -28,7 +28,6 @@ const reducer: Reducer<IActorState> = (state = initialState, action = { type: ''
             };
 
         case ActorActionTypes.UPDATE_ACTOR_ROLL:
-            console.log(action);
             return {
                 ...state,
                 actors: action.action || [],
