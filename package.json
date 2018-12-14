@@ -5,36 +5,44 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node node_modules/jest/bin/jest.js --coverage",
-    "test:watch": "node node_modules/jest/bin/jest.js --watch"
+    "test:coverage": "node node_modules/jest/bin/jest.js --coverage",
+    "test:update": "node node_modules/jest/bin/jest.js --silent -u",
+    "test:watch": "node node_modules/jest/bin/jest.js --watch",
+    "test": "node node_modules/jest/bin/jest.js --silent --bail --noStackTrace",
+    "build": "tsc --noEmit",
+    "lint": "tslint -p tsconfig.json",
+    "pre-commit": "npm run build && npm run lint && npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   },
   "dependencies": {
     "expo": "^31.0.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-redux": "^5.1.1",
-    "redux": "^4.0.1",    
-    "redux-devtools-extension": "^2.13.7"
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/expo": "^31.0.1",
     "@types/jest": "^23.3.10",
-    "@types/react": "^16.7.11",
-    "@types/react-native": "^0.57.15",
-    "@types/react-redux": "^6.0.10",
-    "@types/redux-devtools-extension": "^2.13.2",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.7.0",
-    "enzyme-to-json": "^3.3.4",
+    "@types/react": "^16.7.17",
+    "@types/react-redux": "^6.0.11",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
+    "husky": "^1.2.1",
     "jest": "^23.6.0",
     "jest-expo": "^31.0.0",
     "react-dom": "^16.6.3",
     "ts-jest": "^23.10.5",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.2.1"
+    "typescript": "^3.2.2"
   },
   "private": true
 }
