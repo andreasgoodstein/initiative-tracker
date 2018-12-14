@@ -10,7 +10,7 @@ interface IMappedState {
 }
 
 interface IDispatchState {
-    handleAddActorAction(actor: IActor): void;
+    handleAddActorAction(): void;
     handleRemoveActorAction(actor: IActor): void;
     handleRollForInitiative(): void;
     handleHighlightNextActor(): void;

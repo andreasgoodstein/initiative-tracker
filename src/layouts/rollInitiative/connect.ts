@@ -26,5 +26,4 @@ export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
     },
 });
 
-export default (component: React.PureComponent<RollInitiativeProps>) =>
-    connect<RollInitiativeProps>(mapState, mapDispatch)(component);
+export default (component: React.ComponentClass<RollInitiativeProps>) => connect(mapState, mapDispatch)(component);

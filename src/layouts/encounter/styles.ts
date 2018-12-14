@@ -11,7 +11,18 @@ export default StyleSheet.create({
 
     listHeader: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'flex-start',
+        padding: 5,
         width: '100%',
+    },
+
+    nameText: {
+        flex: 1,
+        textAlign: 'center',
+    },
+
+    numberText: {
+        textAlign: 'center',
+        width: 60,
     },
 });

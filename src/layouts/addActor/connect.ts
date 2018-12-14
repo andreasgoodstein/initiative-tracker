@@ -10,11 +10,10 @@ interface IDispatchState {
 
 export type AddActorProps = {} & IDispatchState & {};
 
-export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<AnyAction>, {}): IDispatchState => ({
     handleAddActor: (actor) => {
         dispatch(actions.addActorAction(actor));
     },
 });
 
-export default (component: React.PureComponent<AddActorProps>) =>
-    connect<AddActorProps>(null, mapDispatch)(component);
+export default (component: React.ComponentClass<AddActorProps>) => connect(null, mapDispatch)(component);

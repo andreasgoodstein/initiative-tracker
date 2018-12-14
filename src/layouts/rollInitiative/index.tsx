@@ -6,18 +6,10 @@ import connect from './connect';
 import { RollInitiativeProps } from './connect';
 import styles from './styles';
 
-interface IStateActor {
-    [id: number]: IActor;
-}
 interface IPageState {
     actors: IActor[];
-    actorDictionary: IStateActor;
+    actorDictionary: Map<number, IActor>;
 }
-
-const parseActorsIntoDictionary = (actors: IActor[]): IStateActor => actors.reduce((obj, actor) => {
-    obj[actor.id] = actor;
-    return obj;
-}, {} as IStateActor);
 
 class RollInitiativePage extends React.PureComponent<RollInitiativeProps, IPageState> {
     public static getDerivedStateFromProps(nextProps: RollInitiativeProps, prevState: RollInitiativeProps) {
@@ -39,15 +31,17 @@ class RollInitiativePage extends React.PureComponent<RollInitiativeProps, IPageS
             actorDictionary: parseActorsIntoDictionary(this.props.actors),
             actors: this.props.actors,
         };
+
+        this.getInitiativeInputField = this.getInitiativeInputField.bind(this);
     }
 
     public render(): React.ReactNode {
         return (
             <View style={styles.container}>
-                <Text>Roll For Initiative</Text>
+                <Text style={styles.title}>Roll For Initiative</Text>
 
-                <View>
-                    {this.state.actors.map(getInitiativeInputField.bind(null, this.updateState.bind(this), this.state))}
+                <View style={styles.list}>
+                    {this.state.actors.map(this.getInitiativeInputField)}
                 </View>
 
                 <TouchableHighlight
@@ -59,45 +53,69 @@ class RollInitiativePage extends React.PureComponent<RollInitiativeProps, IPageS
         );
     }
 
-    private updateState(updatedActor: IActor): void {
+    private updateState(updatedActor: IActor | undefined): void {
+        if (!updatedActor) {
+            return;
+        }
+
+        const newActorDictionary = new Map(this.state.actorDictionary);
+        newActorDictionary.set(updatedActor.id, updatedActor);
+
         const updatedState = {
             ...this.state,
-            actorDictionary: {
-                ...this.state.actorDictionary,
-                [updatedActor.id]: updatedActor,
-            },
+            actorDictionary: newActorDictionary,
         };
 
         this.setState(updatedState);
     }
 
-    private handleSaveButtonPress(actors: IStateActor) {
-        const actorsToUpdate = Object.keys(actors).map((key) => actors[key]);
+    private handleSaveButtonPress(actors: Map<number, IActor>) {
+        const actorsToUpdate = Array.from(actors).map((keyValue) => keyValue[1]);
 
         this.props.handleUpdateRolls(actorsToUpdate);
     }
+
+    private getInitiativeInputField(actor: IActor, index: number): React.ReactNode {
+        const actorDictionary = this.state.actorDictionary;
+
+        const getUpdatedState = (roll: string): IActor | undefined => {
+            const updatedActor = actorDictionary.get(actor.id);
+
+            if (!updatedActor) {
+                return;
+            }
+
+            updatedActor.initiativeRoll = roll
+                ? parseInt(roll, 10)
+                : undefined;
+
+            return updatedActor;
+        };
+
+        const displayActor = actorDictionary.get(actor.id);
+
+        const rollValue = displayActor && displayActor.initiativeRoll
+            ? displayActor.initiativeRoll.toString()
+            : '';
+
+        return (
+            <View style={styles.inputField} key={index}>
+                <Text>{actor.name}</Text>
+
+                <TextInput
+                    keyboardType={'number-pad'}
+                    style={styles.input}
+                    onChangeText={(roll) => this.updateState(getUpdatedState(roll))}
+                    value={rollValue}
+                    />
+            </View>
+        );
+    }
 }
 
+const parseActorsIntoDictionary = (actors: IActor[]): Map<number, IActor> => actors.reduce((actorMap, actor) => {
+    actorMap.set(actor.id, actor);
+    return actorMap;
+}, new Map());
+
 export default connect(RollInitiativePage);
-
-const getInitiativeInputField =
-    (updateState: (actor: IActor) => void, state: IPageState, actor: IActor, index: number ): React.ReactNode => {
-    const getUpdatedState = (roll: string): IActor => {
-        const updatedActor = state.actorDictionary[actor.id];
-        updatedActor.initiativeRoll = roll;
-
-        return updatedActor;
-    };
-
-    return (
-        <View style={styles.inputField} key={index}>
-            <Text>{actor.name}</Text>
-            <TextInput
-                keyboardType={'number-pad'}
-                style={styles.input}
-                onChangeText={(roll) => updateState(getUpdatedState(roll))}
-                value={state.actorDictionary[actor.id].initiativeRoll}
-                />
-        </View>
-    );
-};

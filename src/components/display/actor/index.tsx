@@ -6,14 +6,21 @@ import IActor from '../../../entities/IActor';
 import styles from './styles';
 
 const getStyle = (actor: IActor) => actor.hasActiveTurn
-    ? { ...styles.actorContainer, ...styles.highlighted }
+    ? { ...(styles.actorContainer as object), ...(styles.highlighted as object) }
     : styles.actorContainer;
 
 export default ({ actor }: {actor: IActor}) => (
     <View style={getStyle(actor)}>
-        <Text style={styles.actorStat}>{actor.name}</Text>
+        <Text style={styles.actorName}>{actor.name}</Text>
+
         <Text style={styles.actorStat}>{actor.initiativeBonus}</Text>
-        {actor.initiativeRoll ? (<Text style={styles.actorStat}>{actor.initiativeRoll}</Text>) : <Text>0</Text>}
-        {actor.initiativeTotal ? (<Text style={styles.totalStat}>{actor.initiativeTotal}</Text>) : <Text>0</Text>}
+
+        {actor.initiativeRoll
+            ? (<Text style={styles.actorStat}>{actor.initiativeRoll}</Text>)
+            : <Text style={styles.actorStat}>0</Text>}
+
+        {actor.initiativeTotal
+            ? (<Text style={styles.totalStat}>{actor.initiativeTotal}</Text>)
+            : <Text style={styles.totalStat}>0</Text>}
     </View>
 );

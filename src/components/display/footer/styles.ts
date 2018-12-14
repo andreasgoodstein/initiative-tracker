@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import components, { white } from '../../../styles/components';
+import components from '../../../styles/components';
 
 export default StyleSheet.create({
     container: {
         alignItems: 'stretch',
         flexDirection: 'row',
-        height: 100,
+        height: 75,
         justifyContent: 'space-between',
         width: '100%',
     },

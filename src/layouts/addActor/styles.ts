@@ -7,11 +7,22 @@ export default StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         justifyContent: 'flex-start',
-        marginTop: 35,
     },
 
-    inputField: {
+    title: {
+        fontWeight: 'bold',
+        margin: 10,
+        textAlign: 'center',
+        width: '100%',
+    },
+
+    inputFieldName: {
         ...components.inputField,
+    },
+
+    inputFieldNumber: {
+        ...components.inputField,
+        width: 75,
     },
 
     input: {
@@ -20,7 +31,6 @@ export default StyleSheet.create({
 
     button: {
         ...components.button,
-        height: 40,
     },
 
     buttonText: {

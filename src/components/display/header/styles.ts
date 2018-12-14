@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import components, { white } from '../../../styles/components';
+import components, { colors } from '../../../styles/components';
 
 export default StyleSheet.create({
     container: {
@@ -8,7 +8,9 @@ export default StyleSheet.create({
     },
 
     title: {
-        color: white,
-        marginBottom: 10,
+        color: colors.black,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        width: '100%',
     },
 });

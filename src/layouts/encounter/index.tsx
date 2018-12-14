@@ -14,10 +14,10 @@ export const EncounterLayout: React.SFC<EncounterLayoutProps> =
         <Header />
 
         <View style={styles.listHeader}>
-            <Text>Name</Text>
-            <Text>Bonus</Text>
-            <Text>Roll</Text>
-            <Text>Initiative</Text>
+            <Text style={styles.nameText}>Name</Text>
+            <Text style={styles.numberText}>Bonus</Text>
+            <Text style={styles.numberText}>Roll</Text>
+            <Text style={styles.numberText}>Initiative</Text>
         </View>
 
         <ActorList items={items} removeActor={handleRemoveActorAction}/>

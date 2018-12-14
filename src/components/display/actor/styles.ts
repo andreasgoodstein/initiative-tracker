@@ -20,11 +20,21 @@ export default StyleSheet.create({
         backgroundColor: '#aaa',
     },
 
+    actorName: {
+        ...fonts.p,
+        flex: 1,
+        textAlign: 'center',
+    },
+
     actorStat: {
         ...fonts.p,
+        textAlign: 'center',
+        width: 60,
     },
 
     totalStat: {
         ...fonts.p,
+        textAlign: 'center',
+        width: 50,
     },
 });

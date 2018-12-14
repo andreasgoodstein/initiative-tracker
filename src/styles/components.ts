@@ -1,44 +1,58 @@
-export const primary = '#2020bb';
-export const greyLight = '#ddd';
-export const white = '#fff';
-export const black = '#000';
+import { FlexStyle, TextStyle } from 'react-native';
+
+export const colors = {
+    black: '#000',
+    greyLight: '#ddd',
+    primary: '#2020bb',
+    white: '#fff',
+};
+
+interface IComponents {
+    button: FlexStyle;
+    header: FlexStyle;
+    buttonText: TextStyle;
+    input: FlexStyle;
+    inputField: FlexStyle;
+}
 
 export default {
     button: {
         alignItems: 'center',
-        backgroundColor: primary,
+        backgroundColor: colors.primary,
         borderRadius: 50,
+        height: 40,
         justifyContent: 'center',
         margin: 10,
         width: 100,
     },
 
     buttonText: {
-        color: white,
+        color: colors.white,
     },
 
     header: {
-        alignItems: 'flex-end',
-        backgroundColor: primary,
+        alignItems: 'center',
         flexDirection: 'row',
-        height: 60,
+        height: 40,
         justifyContent: 'center',
         width: '100%',
     },
 
     input: {
-        backgroundColor: greyLight,
+        alignItems: 'center',
+        backgroundColor: colors.greyLight,
         height: 40,
-        marginLeft: 10,
+        justifyContent: 'center',
         padding: 10,
-        width: 250,
+        textAlign: 'center',
+        width: '100%',
     },
 
     inputField: {
         alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        marginBottom: 10,
         padding: 10,
         width: '100%',
     },
-};
+} as IComponents;
