@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the Actor component renders 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#eee",
+      "borderColor": "#fff",
+      "borderWidth": 5,
+      "flexDirection": "row",
+      "height": 70,
+      "justifyContent": "space-evenly",
+      "padding": 10,
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "flex": 1,
+        "fontSize": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    Test Actor
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+        "width": 60,
+      }
+    }
+  >
+    30
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+        "width": 60,
+      }
+    }
+  >
+    0
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+        "width": 50,
+      }
+    }
+  >
+    0
+  </Component>
+</Component>
+`;
