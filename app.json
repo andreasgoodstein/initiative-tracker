@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "initiative-tracker",
-    "slug": "initiative-tracker",
+    "name": "The Initiative Tracker",
+    "slug": "the-initiative-tracker",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -22,8 +22,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#0EA5FF"
+    },
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/andreasgoodstein/initiative-tracker",
+    "description": "A simple Typescript app, meant to keep track of initiative order in games such as D&D 5e"
   }
 }

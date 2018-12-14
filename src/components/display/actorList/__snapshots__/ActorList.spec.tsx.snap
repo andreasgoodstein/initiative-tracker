@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the ActorList component renders 1`] = `
+<Component
+  style={
+    Object {
+      "flex": 1,
+      "width": "100%",
+    }
+  }
+>
+  <ScrollViewMock
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
+      key="0"
+      onPress={[Function]}
+      underlayColor="black"
+    >
+      <Component
+        actor={
+          Object {
+            "clone": [Function],
+            "hasActiveTurn": false,
+            "id": 1,
+            "initiativeBonus": 30,
+            "name": "Test Actor",
+            "sort": [Function],
+          }
+        }
+      />
+    </TouchableHighlight>
+  </ScrollViewMock>
+</Component>
+`;
