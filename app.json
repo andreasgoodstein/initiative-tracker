@@ -22,6 +22,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#0EA5FF"
+    },
     "ios": {
       "supportsTablet": true
     },
