@@ -1,5 +1,4 @@
 import { combineReducers, createStore, Store } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 import actorReducer from '../reducers/actor';
 import { IApplicationState, initialState } from './state';
@@ -12,13 +11,7 @@ export const rootReducer = combineReducers<IApplicationState>({
 });
 
 export function configureStore(): Store<IApplicationState> {
-    let middleware;
-
-    if (process.env.NODE_ENV !== 'production') {
-      middleware = composeWithDevTools();
-    }
-
-    const store = createStore(rootReducer, initialState, middleware) as Store<IApplicationState>;
+    const store = createStore(rootReducer, initialState) as Store<IApplicationState>;
 
     return store;
   }
