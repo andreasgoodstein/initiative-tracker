@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/layouts/rollInitiative/index.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/layouts/rollInitiative</a> index.tsx
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.79% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>14/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.69% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.95% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { Text, TextInput, TouchableHighlight, View } from 'react-native';
+&nbsp;
+import IActor from '../../entities/IActor';
+import connect from './connect';
+import { RollInitiativeProps } from './connect';
+import styles from './styles';
+&nbsp;
+interface IPageState {
+    actors: IActor[];
+    actorDictionary: Map&lt;number, IActor&gt;;
+}
+&nbsp;
+class RollInitiativePage extends React.PureComponent&lt;RollInitiativeProps, IPageState&gt; {
+<span class="fstat-no" title="function not covered" >    public static getDerivedStateFromProps(</span>nextProps: RollInitiativeProps, prevState: RollInitiativeProps) {
+<span class="cstat-no" title="statement not covered" >        if (nextProps.actors !== prevState.actors) {</span>
+<span class="cstat-no" title="statement not covered" >          return {</span>
+                ...prevState,
+                actorDictionary: parseActorsIntoDictionary(nextProps.actors),
+                actors: nextProps.actors,
+            };
+        } else {
+<span class="cstat-no" title="statement not covered" >            return null;</span>
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(</span>props: RollInitiativeProps) {
+<span class="cstat-no" title="statement not covered" >        super(props);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.state = {</span>
+            actorDictionary: parseActorsIntoDictionary(this.props.actors),
+            actors: this.props.actors,
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.getInitiativeInputField = this.getInitiativeInputField.bind(this);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public render(): React.ReactNode {</span></span>
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;View style={styles.container}&gt;
+                &lt;Text style={styles.title}&gt;Roll For Initiative&lt;/Text&gt;
+&nbsp;
+                &lt;View style={styles.list}&gt;
+                    {this.state.actors.map(this.getInitiativeInputField)}
+                &lt;/View&gt;
+&nbsp;
+                &lt;TouchableHighlight
+                    style={styles.button}
+                    onPress={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" ></span>this.handleSaveButtonPress(this.state.actorDictionary)}</span>&gt;
+                    &lt;Text style={styles.buttonText}&gt;Save&lt;/Text&gt;
+                &lt;/TouchableHighlight&gt;
+            &lt;/View&gt;
+        );
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    private updateState(</span>updatedActor: IActor | undefined): void {
+<span class="cstat-no" title="statement not covered" >        if (!updatedActor) {</span>
+<span class="cstat-no" title="statement not covered" >            return;</span>
+        }
+&nbsp;
+        const newActorDictionary = <span class="cstat-no" title="statement not covered" >new Map(this.state.actorDictionary);</span>
+<span class="cstat-no" title="statement not covered" >        newActorDictionary.set(updatedActor.id, updatedActor);</span>
+&nbsp;
+        const updatedState<span class="cstat-no" title="statement not covered" > = {</span>
+            ...this.state,
+            actorDictionary: newActorDictionary,
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setState(updatedState);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    private handleSaveButtonPress(</span>actors: Map&lt;number, IActor&gt;) {
+        const actorsToUpdate = <span class="cstat-no" title="statement not covered" >Array.from(actors).map(<span class="fstat-no" title="function not covered" >(</span>keyValue) =&gt; <span class="cstat-no" title="statement not covered" >keyValue[1])</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.props.handleUpdateRolls(actorsToUpdate);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    private getInitiativeInputField(</span>actor: IActor, index: number): React.ReactNode {</span>
+        const actorDictionary = <span class="cstat-no" title="statement not covered" >this.state.actorDictionary;</span>
+&nbsp;
+        const getUpdatedState = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>roll: string): IActor | undefined =&gt; {</span>
+            const updatedActor = <span class="cstat-no" title="statement not covered" >actorDictionary.get(actor.id);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!updatedActor) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            updatedActor.initiativeRoll = roll</span>
+                ? parseInt(roll, 10)
+                : undefined;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return updatedActor;</span>
+        };
+&nbsp;
+        const displayActor = <span class="cstat-no" title="statement not covered" >actorDictionary.get(actor.id);</span>
+&nbsp;
+        const rollValue = <span class="cstat-no" title="statement not covered" >displayActor &amp;&amp; displayActor.initiativeRoll</span>
+            ? displayActor.initiativeRoll.toString()
+            : '';
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;View style={styles.inputField} key={index}&gt;
+                &lt;Text&gt;{actor.name}&lt;/Text&gt;
+&nbsp;
+                &lt;TextInput
+                    keyboardType={'number-pad'}
+                    style={styles.input}
+                    onChangeText={<span class="fstat-no" title="function not covered" >(</span>roll) =&gt; <span class="cstat-no" title="statement not covered" >this.updateState(getUpdatedState(roll))}</span>
+                    value={rollValue}
+                    /&gt;
+            &lt;/View&gt;
+        );
+    }
+}
+&nbsp;
+const parseActorsIntoDictionary = <span class="fstat-no" title="function not covered" >(</span>actors: IActor[]): Map&lt;number, IActor&gt; =&gt; <span class="cstat-no" title="statement not covered" >actors.reduce(<span class="fstat-no" title="function not covered" >(</span>actorMap, actor) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    actorMap.set(actor.id, actor);</span>
+<span class="cstat-no" title="statement not covered" >    return actorMap;</span>
+}, new Map());
+&nbsp;
+export default connect(RollInitiativePage);
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 12:20:57 GMT+0100 (Romance Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

@@ -10,7 +10,9 @@ exports[`the Actor component renders 1`] = `
       "borderWidth": 5,
       "flexDirection": "row",
       "height": 70,
+      "justifyContent": "space-evenly",
       "padding": 10,
+      "position": "relative",
       "width": "100%",
     }
   }
@@ -18,8 +20,9 @@ exports[`the Actor component renders 1`] = `
   <Component
     style={
       Object {
+        "flex": 1,
         "fontSize": 18,
-        "paddingRight": 10,
+        "textAlign": "center",
       }
     }
   >
@@ -29,11 +32,34 @@ exports[`the Actor component renders 1`] = `
     style={
       Object {
         "fontSize": 18,
-        "paddingRight": 10,
+        "textAlign": "center",
+        "width": 60,
       }
     }
   >
     30
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+        "width": 60,
+      }
+    }
+  >
+    0
+  </Component>
+  <Component
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+        "width": 50,
+      }
+    }
+  >
+    0
   </Component>
 </Component>
 `;

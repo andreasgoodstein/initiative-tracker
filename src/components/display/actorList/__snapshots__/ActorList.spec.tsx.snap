@@ -4,22 +4,11 @@ exports[`the ActorList component renders 1`] = `
 <Component
   style={
     Object {
+      "flex": 1,
       "width": "100%",
     }
   }
 >
-  <Component
-    style={
-      Object {
-        "paddingHorizontal": 15,
-        "width": "100%",
-      }
-    }
-  >
-    <Component>
-      List
-    </Component>
-  </Component>
   <ScrollViewMock
     style={
       Object {
@@ -27,15 +16,26 @@ exports[`the ActorList component renders 1`] = `
       }
     }
   >
-    <Component
-      actor={
-        Object {
-          "initiativeBonus": 30,
-          "name": "Test Actor",
-        }
-      }
+    <TouchableHighlight
+      activeOpacity={0.85}
+      delayPressOut={100}
       key="0"
-    />
+      onPress={[Function]}
+      underlayColor="black"
+    >
+      <Component
+        actor={
+          Object {
+            "clone": [Function],
+            "hasActiveTurn": false,
+            "id": 1,
+            "initiativeBonus": 30,
+            "name": "Test Actor",
+            "sort": [Function],
+          }
+        }
+      />
+    </TouchableHighlight>
   </ScrollViewMock>
 </Component>
 `;

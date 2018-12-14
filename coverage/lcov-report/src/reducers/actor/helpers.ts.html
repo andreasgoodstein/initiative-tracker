@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/reducers/actor/helpers.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/reducers/actor</a> helpers.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/23</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import IActor from '../../entities/IActor';
+export const getNextActiveActor = <span class="fstat-no" title="function not covered" >(</span>actors: IActor[]): IActor[] =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (actors.length &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >        return actors;</span>
+    }
+&nbsp;
+    const sortedActors = <span class="cstat-no" title="statement not covered" >actors.sort(actors[0].sort);</span>
+&nbsp;
+    const currentlyActiveActor = <span class="cstat-no" title="statement not covered" >actors.filter(<span class="fstat-no" title="function not covered" >(</span>actor) =&gt; <span class="cstat-no" title="statement not covered" >actor.hasActiveTurn)</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!currentlyActiveActor) {</span>
+<span class="cstat-no" title="statement not covered" >        sortedActors[0].hasActiveTurn = true;</span>
+<span class="cstat-no" title="statement not covered" >        return sortedActors;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let n = 0; n &lt; sortedActors.length; n += 1) {</span>
+<span class="cstat-no" title="statement not covered" >        if (n + 1 === sortedActors.length) {</span>
+<span class="cstat-no" title="statement not covered" >            sortedActors[n].hasActiveTurn = false;</span>
+<span class="cstat-no" title="statement not covered" >            sortedActors[0].hasActiveTurn = true;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (sortedActors[n].hasActiveTurn) {</span>
+<span class="cstat-no" title="statement not covered" >            sortedActors[n].hasActiveTurn = false;</span>
+<span class="cstat-no" title="statement not covered" >            sortedActors[n + 1].hasActiveTurn = true;</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return sortedActors;</span>
+};
+&nbsp;
+export const removeActorFromList = <span class="fstat-no" title="function not covered" >(</span>actors: IActor[], actorToRemove: IActor): IActor[] =&gt; {
+    const activeActor = <span class="cstat-no" title="statement not covered" >actors.filter(<span class="fstat-no" title="function not covered" >(</span>item) =&gt; <span class="cstat-no" title="statement not covered" >item.hasActiveTurn)</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return actorToRemove.id === (activeActor &amp;&amp; activeActor[0] &amp;&amp; activeActor[0].id)</span>
+        ? getNextActiveActor(actors).filter(<span class="fstat-no" title="function not covered" >(</span>item) =&gt; <span class="cstat-no" title="statement not covered" >!(item.id === actorToRemove.id))</span>
+        : actors.filter(<span class="fstat-no" title="function not covered" >(</span>item) =&gt; <span class="cstat-no" title="statement not covered" >!(item.id === actorToRemove.id))</span>;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Dec 14 2018 12:20:57 GMT+0100 (Romance Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>
