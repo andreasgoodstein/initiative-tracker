@@ -36,7 +36,7 @@ export class Actor implements IActor {
 
     set initiativeRoll(roll) {
         this.privateInitiativeRoll = roll;
-        this.privateInitiativeTotal = parseInt(this.initiativeBonus, 10) + parseInt((roll || 0), 10);
+        this.privateInitiativeTotal = this.initiativeBonus + (roll || 0);
     }
 
     get initiativeTotal(): number | undefined {
