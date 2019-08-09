@@ -14,7 +14,7 @@ interface IDispatchState {
     handleUpdateRolls(actors: IActor[]): void;
 }
 
-export type RollInitiativeProps = IMappedState & IDispatchState & {};
+export type RollInitiativeProps = IMappedState & IDispatchState;
 
 export const mapState = (state: IApplicationState): IMappedState => ({
     actors: selectors.selectAllActors(state),

@@ -8,9 +8,9 @@ interface IDispatchState {
     handleAddActor(actor: IActor): void;
 }
 
-export type AddActorProps = {} & IDispatchState & {};
+export type AddActorProps = IDispatchState;
 
-export const mapDispatch = (dispatch: Dispatch<AnyAction>, {}): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
     handleAddActor: (actor) => {
         dispatch(actions.addActorAction(actor));
     },
