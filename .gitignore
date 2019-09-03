@@ -1,6 +1,8 @@
 node_modules
 coverage
+dist
 
+.cache
 .expo
 npm-debug.*
 
