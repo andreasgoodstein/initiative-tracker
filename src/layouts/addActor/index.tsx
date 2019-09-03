@@ -13,7 +13,6 @@ import connect, { AddActorProps } from './connect';
 import styles from './styles';
 
 interface IAddActorPageState {
-  initiativeBonus: string;
   name: string;
 }
 
@@ -25,7 +24,6 @@ export class AddActorPage extends React.PureComponent<
     super(props);
 
     this.state = {
-      initiativeBonus: '',
       name: '',
     };
   }
@@ -36,27 +34,6 @@ export class AddActorPage extends React.PureComponent<
         <View style={styles.container}>
           <Text style={styles.title}>Add Actor</Text>
 
-          <Text>Name</Text>
-          <View style={styles.inputFieldName}>
-            <TextInput
-              style={styles.input}
-              onChangeText={(name) => this.setState({ name })}
-              value={this.state.name}
-            />
-          </View>
-
-          <Text>Initiative Bonus</Text>
-          <View style={styles.inputFieldNumber}>
-            <TextInput
-              keyboardType={'number-pad'}
-              style={styles.input}
-              onChangeText={(initiativeBonus) =>
-                this.setState({ ...this.state, initiativeBonus })
-              }
-              value={this.state.initiativeBonus.toString()}
-            />
-          </View>
-
           <TouchableHighlight
             style={styles.button}
             onPress={() =>
@@ -65,6 +42,17 @@ export class AddActorPage extends React.PureComponent<
           >
             <Text style={styles.buttonText}>Add</Text>
           </TouchableHighlight>
+
+          <Text>Name</Text>
+          <View style={styles.inputFieldName}>
+            <TextInput
+              autoFocus={true}
+              style={styles.input}
+              onChangeText={(name) => this.setState({ name })}
+              onEndEditing={() => this.props.handleAddActor(createNewActor(this.state))}
+              value={this.state.name}
+            />
+          </View>
         </View>
       </ScrollView>
     );
@@ -74,4 +62,4 @@ export class AddActorPage extends React.PureComponent<
 export default connect(AddActorPage);
 
 const createNewActor = (state: IAddActorPageState): Actor =>
-  new Actor(0, state.name, parseInt(state.initiativeBonus || '0', 10));
+  new Actor(0, state.name);

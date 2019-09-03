@@ -10,7 +10,7 @@ const testList: IActor[] = [
         clone: () => ({} as IActor),
         hasActiveTurn: false,
         id: 1,
-        initiativeBonus: 30,
+        initiative: 30,
         name: 'Test Actor',
         sort: () => 0,
     },

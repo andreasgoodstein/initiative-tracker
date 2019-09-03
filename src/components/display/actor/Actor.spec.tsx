@@ -9,13 +9,21 @@ const testActor: IActor = {
     clone: () => ({} as IActor),
     hasActiveTurn: false,
     id: 1,
-    initiativeBonus: 30,
+    initiative: 30,
     name: 'Test Actor',
     sort: () => 0,
 };
 
 describe('the Actor component', () => {
-    it('renders', () => {
+    it('renders when non active', () => {
+        const wrapper = shallow(<Actor actor={testActor}/>);
+
+        expect(wrapper).not.toBeNull();
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('renders when active', () => {
+        testActor.hasActiveTurn = true;
         const wrapper = shallow(<Actor actor={testActor}/>);
 
         expect(wrapper).not.toBeNull();

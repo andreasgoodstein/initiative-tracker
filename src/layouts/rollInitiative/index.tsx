@@ -53,10 +53,6 @@ class RollInitiativePage extends React.PureComponent<
         <View style={styles.container}>
           <Text style={styles.title}>Roll For Initiative</Text>
 
-          <View style={styles.list}>
-            {this.state.actors.map(this.getInitiativeInputField)}
-          </View>
-
           <TouchableHighlight
             style={styles.button}
             onPress={() =>
@@ -65,6 +61,10 @@ class RollInitiativePage extends React.PureComponent<
           >
             <Text style={styles.buttonText}>Save</Text>
           </TouchableHighlight>
+
+          <View style={styles.list}>
+            {this.state.actors.map(this.getInitiativeInputField)}
+          </View>
         </View>
       </ScrollView>
     );
@@ -105,7 +105,7 @@ class RollInitiativePage extends React.PureComponent<
         return;
       }
 
-      updatedActor.initiativeRoll = roll ? parseInt(roll, 10) : undefined;
+      updatedActor.initiative = roll ? parseInt(roll, 10) : undefined;
 
       return updatedActor;
     };
@@ -113,8 +113,8 @@ class RollInitiativePage extends React.PureComponent<
     const displayActor = actorDictionary.get(actor.id);
 
     const rollValue =
-      displayActor && displayActor.initiativeRoll
-        ? displayActor.initiativeRoll.toString()
+      displayActor && displayActor.initiative
+        ? displayActor.initiative.toString()
         : '';
 
     return (

@@ -13,6 +13,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         padding: 5,
+        paddingRight: 15,
         width: '100%',
     },
 

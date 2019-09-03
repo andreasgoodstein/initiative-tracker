@@ -19,20 +19,18 @@ export const EncounterLayout: React.SFC<EncounterLayoutProps> = ({
     <View style={styles.container}>
       <Header />
 
-      <View style={styles.listHeader}>
-        <Text style={styles.nameText}>Name</Text>
-        <Text style={styles.numberText}>Bonus</Text>
-        <Text style={styles.numberText}>Roll</Text>
-        <Text style={styles.numberText}>Initiative</Text>
-      </View>
-
-      <ActorList items={items} removeActor={handleRemoveActorAction} />
-
       <Footer
         addActor={handleAddActorAction}
         rollForInitiative={handleRollForInitiative}
         highlightNextActor={handleHighlightNextActor}
       />
+
+      <View style={styles.listHeader}>
+        <Text style={styles.nameText}>Name</Text>
+        <Text style={styles.numberText}>Initiative</Text>
+      </View>
+
+      <ActorList items={items} removeActor={handleRemoveActorAction} />
     </View>
   </ScrollView>
 );

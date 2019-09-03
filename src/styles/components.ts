@@ -43,7 +43,7 @@ export default {
         backgroundColor: colors.greyLight,
         height: 40,
         justifyContent: 'center',
-        padding: 10,
+        padding: 5,
         textAlign: 'center',
         width: '100%',
     },
@@ -51,8 +51,8 @@ export default {
     inputField: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 10,
-        padding: 10,
+        marginBottom: 5,
+        padding: 5,
         width: '100%',
     },
 } as IComponents;

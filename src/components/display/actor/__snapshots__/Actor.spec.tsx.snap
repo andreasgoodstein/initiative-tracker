@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`the Actor component renders 1`] = `
-<Component
+exports[`the Actor component renders when active 1`] = `
+<View
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#eee",
+      "backgroundColor": "#aaa",
       "borderColor": "#fff",
       "borderWidth": 5,
       "flexDirection": "row",
-      "height": 70,
+      "height": 60,
       "justifyContent": "space-evenly",
       "padding": 10,
       "position": "relative",
@@ -17,7 +17,7 @@ exports[`the Actor component renders 1`] = `
     }
   }
 >
-  <Component
+  <Text
     style={
       Object {
         "flex": 1,
@@ -27,8 +27,8 @@ exports[`the Actor component renders 1`] = `
     }
   >
     Test Actor
-  </Component>
-  <Component
+  </Text>
+  <Text
     style={
       Object {
         "fontSize": 18,
@@ -38,8 +38,39 @@ exports[`the Actor component renders 1`] = `
     }
   >
     30
-  </Component>
-  <Component
+  </Text>
+</View>
+`;
+
+exports[`the Actor component renders when non active 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#eee",
+      "borderColor": "#fff",
+      "borderWidth": 5,
+      "flexDirection": "row",
+      "height": 45,
+      "justifyContent": "space-evenly",
+      "padding": 10,
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "flex": 1,
+        "fontSize": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    Test Actor
+  </Text>
+  <Text
     style={
       Object {
         "fontSize": 18,
@@ -48,18 +79,7 @@ exports[`the Actor component renders 1`] = `
       }
     }
   >
-    0
-  </Component>
-  <Component
-    style={
-      Object {
-        "fontSize": 18,
-        "textAlign": "center",
-        "width": 50,
-      }
-    }
-  >
-    0
-  </Component>
-</Component>
+    30
+  </Text>
+</View>
 `;

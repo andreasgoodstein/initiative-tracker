@@ -9,7 +9,7 @@ export default StyleSheet.create({
         borderColor: '#fff',
         borderWidth: 5,
         flexDirection: 'row',
-        height: 70,
+        height: 45,
         justifyContent: 'space-evenly',
         padding: 10,
         position: 'relative',
@@ -18,6 +18,7 @@ export default StyleSheet.create({
 
     highlighted: {
         backgroundColor: '#aaa',
+        height: 60,
     },
 
     actorName: {
