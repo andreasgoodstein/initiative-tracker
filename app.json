@@ -16,7 +16,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": ["**/*"],    
+    "android": {
+      "package": "com.andreasgoodstein.theinitiativetracker"
+    },
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#0EA5FF"
