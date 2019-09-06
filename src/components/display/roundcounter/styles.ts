@@ -12,7 +12,9 @@ export default StyleSheet.create({
   counter: {
     fontSize: 16,
     fontWeight: "bold",
-    padding: 10
+    padding: 10,
+    textAlign: "center",
+    width: 50,
   },
 
   text: {
