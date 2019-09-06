@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   modulePaths: ["<rootDir>/src"],
-  coveragePathIgnorePatterns: ["/node_modules/", "/test/", "/assets/"],
+  coveragePathIgnorePatterns: ["/node_modules/", "/test/", "/assets/", "/build/", "/dist/", "/coverage/"],
   setupFilesAfterEnv: ["<rootDir>/test/setupEnzyme.js"],
   snapshotSerializers: ["enzyme-to-json/serializer"]
 };
