@@ -1,15 +1,15 @@
-import IActor from '../../entities/IActor';
+import IActor from "../../entities/IActor";
 
 export interface IActorState {
-    readonly actors: IActor[];
+    readonly actorList: IActor[];
     readonly isAddingActor: boolean;
     readonly isRollingInitiative: boolean;
 }
 
-const initialState: IActorState = {
-    actors: [],
+const initialActorState: IActorState = {
+    actorList: [],
     isAddingActor: false,
     isRollingInitiative: false,
 };
 
-export default initialState;
+export default initialActorState;

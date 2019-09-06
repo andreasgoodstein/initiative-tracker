@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   ScrollView,
   Text,
   TextInput,
   TouchableHighlight,
   View,
-} from 'react-native';
+} from "react-native";
 
-import { Actor } from '../../entities/IActor';
+import { Actor } from "../../entities/IActor";
 
-import connect, { AddActorProps } from './connect';
-import styles from './styles';
+import connect, { AddActorProps } from "./connect";
+import styles from "./styles";
 
 interface IAddActorPageState {
   name: string;
@@ -24,7 +24,7 @@ export class AddActorPage extends React.PureComponent<
     super(props);
 
     this.state = {
-      name: '',
+      name: "",
     };
   }
 

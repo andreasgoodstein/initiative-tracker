@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 import {
   ScrollView,
   Text,
   TextInput,
   TouchableHighlight,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 
-import IActor from '../../entities/IActor';
-import connect from './connect';
-import { RollInitiativeProps } from './connect';
-import styles from './styles';
+import IActor from "../../entities/IActor";
+import connect from "./connect";
+import { RollInitiativeProps } from "./connect";
+import styles from "./styles";
 
 interface IPageState {
-  actors: IActor[];
+  actorList: IActor[];
   actorDictionary: Map<number, IActor>;
 }
 
@@ -23,13 +23,13 @@ class RollInitiativePage extends React.PureComponent<
 > {
   public static getDerivedStateFromProps(
     nextProps: RollInitiativeProps,
-    prevState: RollInitiativeProps,
+    prevState: RollInitiativeProps
   ) {
-    if (nextProps.actors !== prevState.actors) {
+    if (nextProps.actorList !== prevState.actorList) {
       return {
         ...prevState,
-        actorDictionary: parseActorsIntoDictionary(nextProps.actors),
-        actors: nextProps.actors,
+        actorDictionary: parseActorsIntoDictionary(nextProps.actorList),
+        actorList: nextProps.actorList
       };
     } else {
       return null;
@@ -40,8 +40,8 @@ class RollInitiativePage extends React.PureComponent<
     super(props);
 
     this.state = {
-      actorDictionary: parseActorsIntoDictionary(this.props.actors),
-      actors: this.props.actors,
+      actorDictionary: parseActorsIntoDictionary(this.props.actorList),
+      actorList: this.props.actorList
     };
 
     this.getInitiativeInputField = this.getInitiativeInputField.bind(this);
@@ -63,7 +63,7 @@ class RollInitiativePage extends React.PureComponent<
           </TouchableHighlight>
 
           <View style={styles.list}>
-            {this.state.actors.map(this.getInitiativeInputField)}
+            {this.state.actorList.map(this.getInitiativeInputField)}
           </View>
         </View>
       </ScrollView>
@@ -80,22 +80,19 @@ class RollInitiativePage extends React.PureComponent<
 
     const updatedState = {
       ...this.state,
-      actorDictionary: newActorDictionary,
+      actorDictionary: newActorDictionary
     };
 
     this.setState(updatedState);
   }
 
-  private handleSaveButtonPress(actors: Map<number, IActor>) {
-    const actorsToUpdate = Array.from(actors).map((keyValue) => keyValue[1]);
+  private handleSaveButtonPress(actorList: Map<number, IActor>) {
+    const actorsToUpdate = Array.from(actorList).map((keyValue) => keyValue[1]);
 
     this.props.handleUpdateRolls(actorsToUpdate);
   }
 
-  private getInitiativeInputField(
-    actor: IActor,
-    index: number,
-  ): React.ReactNode {
+  private getInitiativeInputField(actor: IActor): React.ReactNode {
     const actorDictionary = this.state.actorDictionary;
 
     const getUpdatedState = (roll: string): IActor | undefined => {
@@ -115,14 +112,17 @@ class RollInitiativePage extends React.PureComponent<
     const rollValue =
       displayActor && displayActor.initiative
         ? displayActor.initiative.toString()
-        : '';
+        : "";
 
     return (
-      <View style={styles.inputField} key={index}>
+      <View
+        style={styles.inputField}
+        key={actor.id}
+      >
         <Text>{actor.name}</Text>
 
         <TextInput
-          keyboardType={'number-pad'}
+          keyboardType={"number-pad"}
           style={styles.input}
           onChangeText={(roll) => this.updateState(getUpdatedState(roll))}
           value={rollValue}
@@ -132,8 +132,8 @@ class RollInitiativePage extends React.PureComponent<
   }
 }
 
-const parseActorsIntoDictionary = (actors: IActor[]): Map<number, IActor> =>
-  actors.reduce((actorMap, actor) => {
+const parseActorsIntoDictionary = (actorList: IActor[]): Map<number, IActor> =>
+  actorList.reduce((actorMap, actor) => {
     actorMap.set(actor.id, actor);
     return actorMap;
   }, new Map());

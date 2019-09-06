@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import connect, { NavigatorProps, Page } from './connect';
+import connect, { NavigatorProps, Page } from "./connect";
 
-import AddActorLayout from '../layouts/addActor';
-import CombatLayout from '../layouts/encounter';
-import RollInitiative from '../layouts/rollInitiative';
+import AddActorLayout from "../layouts/addActor";
+import CombatLayout from "../layouts/encounter";
+import RollInitiative from "../layouts/rollInitiative";
 
-export const Navigator: React.SFC<NavigatorProps> = ({ displayPage }) => {
+export const Navigator: React.FunctionComponent<NavigatorProps> = ({ displayPage }) => {
     switch (displayPage) {
 
         case Page.AddActor:

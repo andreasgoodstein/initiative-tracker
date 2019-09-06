@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import { IApplicationState } from '../store/state';
+import { connect } from "react-redux";
+import { IApplicationState } from "../store/state";
 
 interface INavigatorState {
     displayPage: Page;
@@ -8,9 +8,9 @@ interface INavigatorState {
 export type NavigatorProps = INavigatorState;
 
 export enum Page {
-    AddActor = 'AddActor',
-    RollInitiative = 'RollInitiative',
-    Combat = 'Combat',
+    AddActor = "AddActor",
+    RollInitiative = "RollInitiative",
+    Combat = "Combat",
 }
 
 export const mapState = (state: IApplicationState): INavigatorState => {
@@ -32,4 +32,4 @@ export const mapState = (state: IApplicationState): INavigatorState => {
     };
 };
 
-export default (component: React.SFC<NavigatorProps>) => connect(mapState)(component);
+export default (component: React.FunctionComponent<NavigatorProps>) => connect(mapState)(component);

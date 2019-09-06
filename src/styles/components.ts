@@ -1,10 +1,10 @@
-import { FlexStyle, TextStyle } from 'react-native';
+import { FlexStyle, TextStyle } from "react-native";
 
 export const colors = {
-    black: '#000',
-    greyLight: '#ddd',
-    primary: '#2020bb',
-    white: '#fff',
+    black: "#000",
+    greyLight: "#ddd",
+    primary: "#2020bb",
+    white: "#fff",
 };
 
 interface IComponents {
@@ -13,15 +13,16 @@ interface IComponents {
     buttonText: TextStyle;
     input: FlexStyle;
     inputField: FlexStyle;
+    row: FlexStyle;
 }
 
 export default {
     button: {
-        alignItems: 'center',
+        alignItems: "center",
         backgroundColor: colors.primary,
         borderRadius: 50,
         height: 40,
-        justifyContent: 'center',
+        justifyContent: "center",
         margin: 10,
         width: 100,
     },
@@ -31,28 +32,35 @@ export default {
     },
 
     header: {
-        alignItems: 'center',
-        flexDirection: 'row',
+        alignItems: "center",
+        flexDirection: "row",
         height: 40,
-        justifyContent: 'center',
-        width: '100%',
+        justifyContent: "center",
+        width: "100%",
     },
 
     input: {
-        alignItems: 'center',
+        alignItems: "center",
         backgroundColor: colors.greyLight,
         height: 40,
-        justifyContent: 'center',
+        justifyContent: "center",
         padding: 5,
-        textAlign: 'center',
-        width: '100%',
+        textAlign: "center",
+        width: "100%",
     },
 
     inputField: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
         marginBottom: 5,
         padding: 5,
-        width: '100%',
+        width: "100%",
+    },
+
+    row: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        width: "100%",
     },
 } as IComponents;

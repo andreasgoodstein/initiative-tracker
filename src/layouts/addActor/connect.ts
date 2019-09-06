@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import { AnyAction, Dispatch } from 'redux';
+import { connect } from "react-redux";
+import { AnyAction, Dispatch } from "redux";
 
-import IActor from '../../entities/IActor';
-import actions from '../../reducers/actor/actions';
+import IActor from "../../entities/IActor";
+import actions from "../../reducers/actor/actions";
 
 interface IDispatchState {
     handleAddActor(actor: IActor): void;

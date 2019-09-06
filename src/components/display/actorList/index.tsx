@@ -1,77 +1,76 @@
-import React from 'react';
-import { Alert, ScrollView, TouchableHighlight, View } from 'react-native';
+import React from "react";
+import { Alert, ScrollView, TouchableHighlight, View } from "react-native";
 
-import IActor from 'entities/IActor';
+import IActor from "entities/IActor";
 
-import Actor from '../../../components/display/actor';
+import Actor from "../../../components/display/actor";
 
-import styles from './styles';
+import styles from "./styles";
+
+type RemoveActorFunction = (actor: IActor, actorList: IActor[]) => void;
 
 export default ({
-  items,
-  removeActor,
+  actorList,
+  removeActor
 }: {
-  items: IActor[];
-  removeActor(actor: IActor): void;
+  actorList: IActor[];
+  removeActor: RemoveActorFunction;
 }) => (
   <View style={styles.listContainer}>
     <ScrollView style={styles.listView}>
-      {items ? getSortedActorItems(items, removeActor) : null}
+      {actorList ? getSortedActorItems(actorList, removeActor) : null}
     </ScrollView>
   </View>
 );
 
 const getSortedActorItems = (
-  items: IActor[],
-  removeActor: (actor: IActor) => void,
+  actorList: IActor[],
+  removeActor: RemoveActorFunction
 ) => {
-  const firstActor = items[0];
+  const firstActor = actorList[0];
   if (!firstActor) {
     return [];
   }
 
-  const sortedItems = items.filter((item) => item).sort(firstActor.sort);
+  const sortedItems = actorList.filter(Boolean).sort(firstActor.sort);
 
-  return sortedItems.map((item, index) =>
-    getActorElement(item, index, removeActor),
+  return sortedItems.map((actor, index) =>
+    getActorElement(actorList, actor, index, removeActor)
   );
 };
 
 const getActorElement = (
-  item: IActor,
+  actorList: IActor[],
+  actor: IActor,
   index: number,
-  removeActor: (actor: IActor) => void,
+  removeActor: RemoveActorFunction
 ) => (
   <TouchableHighlight
     key={index}
     onPress={() => {
-      removeActorDialog(removeActor, item);
+      removeActorDialog(actorList, actor, removeActor);
     }}
   >
-    <Actor actor={item} />
+    <Actor actor={actor} />
   </TouchableHighlight>
 );
 
 const removeActorDialog = (
-  removeActor: (actor: IActor) => void,
-  item: IActor,
+  actorList: IActor[],
+  actor: IActor,
+  removeActor: RemoveActorFunction
 ) => {
   // Works on both iOS and Android
-  Alert.alert(
-    `Remove ${item.name}?`,
-    '',
-    [
-      {
-        style: 'cancel',
-        text: 'Cancel',
+  Alert.alert(`Remove ${actor.name}?`, "", [
+    {
+      style: "cancel",
+      text: "Cancel"
+    },
+    {
+      onPress: () => {
+        removeActor(actor, actorList);
       },
-      {
-        onPress: () => {
-          removeActor(item);
-        },
-        text: 'OK',
-      },
-    ],
-    { cancelable: false },
-  );
+      text: "OK"
+    }
+  ]);
 };

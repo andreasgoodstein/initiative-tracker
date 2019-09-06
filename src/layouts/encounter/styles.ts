@@ -1,29 +1,29 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-import styles from '../styles';
+import styles from "../styles";
 
 export default StyleSheet.create({
     container: {
         ...styles.layoutContainer,
         flex: 1,
-        justifyContent: 'space-between',
+        justifyContent: "space-between",
     },
 
     listHeader: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+        flexDirection: "row",
+        justifyContent: "flex-start",
         padding: 5,
         paddingRight: 15,
-        width: '100%',
+        width: "100%",
     },
 
     nameText: {
         flex: 1,
-        textAlign: 'center',
+        textAlign: "center",
     },
 
     numberText: {
-        textAlign: 'center',
+        textAlign: "center",
         width: 60,
     },
 });

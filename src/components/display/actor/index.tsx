@@ -1,26 +1,28 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from "react";
+import { Text, View } from "react-native";
 
-import IActor from '../../../entities/IActor';
+import IActor from "../../../entities/IActor";
 
-import styles from './styles';
+import styles from "./styles";
 
 const getStyle = (actor: IActor) =>
   actor.hasActiveTurn
     ? {
         ...(styles.actorContainer as object),
-        ...(styles.highlighted as object),
+        ...(styles.highlighted as object)
       }
     : styles.actorContainer;
 
-export default ({ actor }: { actor: IActor }) => (
-  <View style={getStyle(actor)}>
-    <Text style={styles.actorName}>{actor.name}</Text>
+export default ({ actor }: { actor: IActor }) => {
+  return (
+    <View style={getStyle(actor)}>
+      <Text style={styles.actorName}>{actor.name}</Text>
 
-    {actor.initiative ? (
-      <Text style={styles.actorStat}>{actor.initiative}</Text>
-    ) : (
-      <Text style={styles.actorStat}>0</Text>
-    )}
-  </View>
-);
+      {actor.initiative ? (
+        <Text style={styles.actorStat}>{actor.initiative}</Text>
+      ) : (
+        <Text style={styles.actorStat}>0</Text>
+      )}
+    </View>
+  );
+};

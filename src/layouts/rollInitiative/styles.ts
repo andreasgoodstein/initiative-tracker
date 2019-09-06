@@ -1,25 +1,25 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-import components from '../../styles/components';
+import components from "../../styles/components";
 
 export default StyleSheet.create({
     container: {
-        alignItems: 'center',
+        alignItems: "center",
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: "flex-start",
     },
 
     title: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
         margin: 10,
-        textAlign: 'center',
-        width: '100%',
+        textAlign: "center",
+        width: "100%",
     },
 
     list: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
     },
 
     button: {
