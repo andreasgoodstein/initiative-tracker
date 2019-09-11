@@ -1,4 +1,6 @@
+import { AsyncStorage } from "react-native";
 import { applyMiddleware, combineReducers, createStore, Store } from "redux";
+import { persistReducer, persistStore } from "redux-persist";
 
 import actorReducer from "../reducers/actor";
 import gameReducer from "../reducers/game";
@@ -14,6 +16,17 @@ export const rootReducer = combineReducers<IApplicationState>({
   gameState: gameReducer
 });
 
-export function configureStore(): Store<IApplicationState> {
-  return applyMiddleware(multi)(createStore)(rootReducer, initialState);
-}
+const persistConfig = {
+  key: "theinitiativetracker",
+  storage: AsyncStorage
+};
+
+export const getStore = (): Store<IApplicationState> => {
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+  return applyMiddleware(multi)(createStore)(persistedReducer, initialState);
+};
+
+export const getPersistor = (store: Store<IApplicationState>) => {
+  return persistStore(store);
+};
