@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  View
-} from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 
-import IActor from "../../entities/IActor";
-import connect from "./connect";
-import { RollInitiativeProps } from "./connect";
+import Footer from "../../components/display/footer/Footer";
+import Header from "../../components/display/header";
+import IActor, { sortActors } from "../../entities/IActor";
+
+import connect, { RollInitiativeProps } from "./connect";
 import styles from "./styles";
 
 interface IPageState {
@@ -47,26 +43,23 @@ class RollInitiativePage extends React.PureComponent<
     this.getInitiativeInputField = this.getInitiativeInputField.bind(this);
   }
 
-  public render(): React.ReactNode {
+  public render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.title}>Roll For Initiative</Text>
+      <View style={styles.container}>
+        <Header />
 
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() =>
-              this.handleSaveButtonPress(this.state.actorDictionary)
-            }
-          >
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableHighlight>
+        <Text style={styles.title}>Roll For Initiative</Text>
 
+        <ScrollView>
           <View style={styles.list}>
-            {this.state.actorList.map(this.getInitiativeInputField)}
+            {this.state.actorList
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map(this.getInitiativeInputField)}
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+
+        <Footer />
+      </View>
     );
   }
 
@@ -86,12 +79,6 @@ class RollInitiativePage extends React.PureComponent<
     this.setState(updatedState);
   }
 
-  private handleSaveButtonPress(actorList: Map<number, IActor>) {
-    const actorsToUpdate = Array.from(actorList).map((keyValue) => keyValue[1]);
-
-    this.props.handleUpdateRolls(actorsToUpdate);
-  }
-
   private getInitiativeInputField(actor: IActor): React.ReactNode {
     const actorDictionary = this.state.actorDictionary;
 
@@ -102,23 +89,17 @@ class RollInitiativePage extends React.PureComponent<
         return;
       }
 
-      updatedActor.initiative = roll ? parseInt(roll, 10) : undefined;
+      updatedActor.initiative = roll ? parseInt(roll, 10) : 0;
 
       return updatedActor;
     };
 
     const displayActor = actorDictionary.get(actor.id);
 
-    const rollValue =
-      displayActor && displayActor.initiative
-        ? displayActor.initiative.toString()
-        : "";
+    const rollValue = displayActor ? displayActor.initiative.toString() : "";
 
     return (
-      <View
-        style={styles.inputField}
-        key={actor.id}
-      >
+      <View style={styles.inputField} key={actor.id}>
         <Text>{actor.name}</Text>
 
         <TextInput

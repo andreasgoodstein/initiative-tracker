@@ -1,29 +1,38 @@
 import { StyleSheet } from "react-native";
 
-import styles from "../styles";
-
 export default StyleSheet.create({
-    container: {
-        ...styles.layoutContainer,
-        flex: 1,
-        justifyContent: "space-between",
-    },
+  container: {
+    flex: 1,
+    justifyContent: "space-between"
+  },
 
-    listHeader: {
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        padding: 5,
-        paddingRight: 15,
-        width: "100%",
-    },
+  listHeader: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    padding: 5,
+    width: "100%"
+  },
 
-    nameText: {
-        flex: 1,
-        textAlign: "center",
-    },
+  nameText: {
+    flex: 1,
+    textAlign: "left"
+  },
 
-    numberText: {
-        textAlign: "center",
-        width: 60,
-    },
+  numberText: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    textAlign: "center",
+  },
+
+  addActorButton: {
+    bottom: 120,
+    position: "absolute",
+    right: 3
+  },
+
+  nextActorButton: {
+    bottom: 40,
+    position: "absolute",
+    right: 3
+  }
 });

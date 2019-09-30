@@ -10,10 +10,8 @@ interface IMappedState {
 }
 
 interface IDispatchState {
-  handleAddActorAction(): void;
-  handleRemoveActorAction(actor: IActor, actorList: IActor[]): void;
-  handleRollForInitiative(): void;
-  handleHighlightNextActor(actorList: IActor[]): void;
+  handleRemoveActorAction(actor: IActor): void;
+  handleHighlightNextActor(): void;
 }
 
 export type EncounterLayoutProps = IMappedState & IDispatchState;
@@ -23,19 +21,13 @@ export const mapState = (state: IApplicationState): IMappedState => ({
 });
 
 export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
-  handleAddActorAction: () => {
-    dispatch(actions.tryAddActorAction());
-  },
-  handleHighlightNextActor: (actorList: IActor[]) => {
+  handleHighlightNextActor: () => {
     // @ts-ignore ignore array of actions type error - is handled by middleware
-    dispatch(actions.highlightNextActor(actorList));
+    dispatch(actions.highlightNextActor());
   },
-  handleRemoveActorAction: (actor, actorList) => {
+  handleRemoveActorAction: (actor) => {
     // @ts-ignore ignore array of actions type error - is handled by middleware
-    dispatch(actions.removeActorAction(actor, actorList));
-  },
-  handleRollForInitiative: () => {
-    dispatch(actions.rollAllActors());
+    dispatch(actions.removeActor(actor));
   }
 });
 
