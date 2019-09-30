@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, ScrollView, TouchableHighlight, View } from "react-native";
 
-import IActor from "entities/IActor";
+import IActor, { sortActors } from "../../../entities/IActor";
 
 import Actor from "../../../components/display/actor";
 
@@ -28,30 +28,32 @@ const getSortedActorItems = (
   removeActor: RemoveActorFunction
 ) => {
   const firstActor = actorList[0];
+
   if (!firstActor) {
     return [];
   }
 
-  const sortedItems = actorList.filter(Boolean).sort(firstActor.sort);
+  const sortedItems = actorList.filter(Boolean).sort(sortActors);
 
-  return sortedItems.map((actor, index) =>
-    getActorElement(actorList, actor, index, removeActor)
+  return sortedItems.map((actor) =>
+    getActorElement(actorList, actor, removeActor)
   );
 };
 
 const getActorElement = (
   actorList: IActor[],
   actor: IActor,
-  index: number,
   removeActor: RemoveActorFunction
 ) => (
   <TouchableHighlight
-    key={index}
+    key={actor.id}
     onPress={() => {
       removeActorDialog(actorList, actor, removeActor);
     }}
   >
-    <Actor actor={actor} />
+    <View>
+      <Actor actor={actor} />
+    </View>
   </TouchableHighlight>
 );
 

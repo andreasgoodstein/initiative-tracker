@@ -24,7 +24,8 @@ export default StyleSheet.create({
     actorName: {
         ...fonts.p,
         flex: 1,
-        textAlign: "center",
+        paddingLeft: 15,
+        textAlign: "left",
     },
 
     actorStat: {

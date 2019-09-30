@@ -7,12 +7,10 @@ import ActorList from "./index";
 
 const testList: IActor[] = [
   {
-    clone: () => ({} as IActor),
     hasActiveTurn: false,
     id: 1,
     initiative: 30,
-    name: "Test Actor",
-    sort: () => 0
+    name: "Test Actor"
   }
 ];
 

@@ -16,13 +16,9 @@ const getStyle = (actor: IActor) =>
 export default ({ actor }: { actor: IActor }) => {
   return (
     <View style={getStyle(actor)}>
-      <Text style={styles.actorName}>{actor.name}</Text>
+      <Text style={styles.actorStat}>{actor.initiative}</Text>
 
-      {actor.initiative ? (
-        <Text style={styles.actorStat}>{actor.initiative}</Text>
-      ) : (
-        <Text style={styles.actorStat}>0</Text>
-      )}
+      <Text style={styles.actorName}>{actor.name}</Text>
     </View>
   );
 };

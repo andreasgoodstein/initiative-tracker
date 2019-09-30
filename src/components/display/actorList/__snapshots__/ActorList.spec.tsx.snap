@@ -19,22 +19,24 @@ exports[`the ActorList component renders 1`] = `
     <TouchableHighlight
       activeOpacity={0.85}
       delayPressOut={100}
-      key="0"
+      key="1"
       onPress={[Function]}
       underlayColor="black"
     >
-      <Component
-        actor={
-          Object {
-            "clone": [Function],
-            "hasActiveTurn": false,
-            "id": 1,
-            "initiative": 30,
-            "name": "Test Actor",
-            "sort": [Function],
+      <View>
+        <Component
+          actor={
+            Object {
+              "clone": [Function],
+              "hasActiveTurn": false,
+              "id": 1,
+              "initiative": 30,
+              "name": "Test Actor",
+              "sort": [Function],
+            }
           }
-        }
-      />
+        />
+      </View>
     </TouchableHighlight>
   </ScrollViewMock>
 </View>
