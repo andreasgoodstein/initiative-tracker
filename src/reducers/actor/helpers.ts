@@ -1,7 +1,7 @@
-import IActor from "../../entities/IActor";
+import IActor, { sortActors } from "../../entities/IActor";
 
 export const isCurrentActorTopOfTheRound = (actorList: IActor[]): boolean => {
-  return actorList[0] && actorList[0].hasActiveTurn;
+  return actorList.length < 1 || actorList[0].hasActiveTurn;
 };
 
 export const getNextActiveActor = (actorList: IActor[]): IActor[] => {
@@ -9,7 +9,7 @@ export const getNextActiveActor = (actorList: IActor[]): IActor[] => {
     return actorList;
   }
 
-  const sortedActors = actorList.sort(actorList[0].sort);
+  const sortedActors = [...actorList].sort(sortActors);
 
   const currentlyActiveActor = actorList.filter((actor) => actor.hasActiveTurn);
 
@@ -44,9 +44,11 @@ export const removeActorFromList = (
   const isRemovedActorCurrent =
     actorToRemove.id === (activeActor && activeActor[0] && activeActor[0].id);
 
-  return isRemovedActorCurrent
+  const newActorList = isRemovedActorCurrent
     ? getNextActiveActor(actorList).filter(
         (item) => !(item.id === actorToRemove.id)
       )
     : actorList.filter((item) => !(item.id === actorToRemove.id));
+
+  return [...newActorList];
 };

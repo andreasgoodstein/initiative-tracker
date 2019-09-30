@@ -1,9 +1,13 @@
+import GameScreen from "../../entities/GameScreenEnum";
+
 export interface IGameState {
-    readonly roundCount: number;
+  readonly gameScreen: GameScreen;
+  readonly roundCount: number;
 }
 
 const initialGameState: IGameState = {
-    roundCount: 0,
+  gameScreen: GameScreen.Encounter,
+  roundCount: 0
 };
 
 export default initialGameState;

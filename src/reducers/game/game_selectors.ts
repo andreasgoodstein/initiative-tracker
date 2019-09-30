@@ -4,5 +4,5 @@ const selectRoundCount = (state: IApplicationState): number =>
   state.gameState.roundCount;
 
 export default {
-  selectRoundCount,
+  selectRoundCount
 };

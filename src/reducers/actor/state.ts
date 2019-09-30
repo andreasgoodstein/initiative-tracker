@@ -2,14 +2,12 @@ import IActor from "../../entities/IActor";
 
 export interface IActorState {
     readonly actorList: IActor[];
-    readonly isAddingActor: boolean;
-    readonly isRollingInitiative: boolean;
+    readonly nextActorId: number;
 }
 
 const initialActorState: IActorState = {
     actorList: [],
-    isAddingActor: false,
-    isRollingInitiative: false,
+    nextActorId: 1,
 };
 
 export default initialActorState;

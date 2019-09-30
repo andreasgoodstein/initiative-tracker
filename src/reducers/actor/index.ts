@@ -12,7 +12,7 @@ const reducer: Reducer<IActorState> = (
       return {
         ...actorState,
         actorList: [...actorState.actorList, action.payload.actor],
-        isAddingActor: false
+        nextActorId: actorState.nextActorId + 1
       };
 
     case ActorActionTypes.REMOVE_ACTOR:
@@ -24,26 +24,13 @@ const reducer: Reducer<IActorState> = (
     case ActorActionTypes.UPDATE_ACTOR_ROLL:
       return {
         ...actorState,
-        actorList: action.payload.actorList,
-        isRollingInitiative: false
+        actorList: action.payload.actorList
       };
 
     case ActorActionTypes.HIGHLIGHT_NEXT_ACTOR:
       return {
         ...actorState,
         actorList: action.payload.actorList
-      };
-
-    case ActorActionTypes.TRY_ADD_ACTOR:
-      return {
-        ...actorState,
-        isAddingActor: true
-      };
-
-    case ActorActionTypes.ROLL_FOR_ALL_ACTORS:
-      return {
-        ...actorState,
-        isRollingInitiative: true
       };
 
     default:
