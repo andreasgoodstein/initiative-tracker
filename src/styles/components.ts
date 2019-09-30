@@ -9,6 +9,8 @@ export const colors = {
 
 interface IComponents {
     button: FlexStyle;
+    buttonSmall: FlexStyle;
+    buttonTab: FlexStyle;
     header: FlexStyle;
     buttonText: TextStyle;
     input: FlexStyle;
@@ -16,15 +18,31 @@ interface IComponents {
     row: FlexStyle;
 }
 
+const buttonSize = 75;
+
 export default {
     button: {
         alignItems: "center",
         backgroundColor: colors.primary,
-        borderRadius: 50,
-        height: 40,
+        borderRadius: buttonSize,
+        height: buttonSize,
         justifyContent: "center",
         margin: 10,
-        width: 100,
+        width: buttonSize,
+    },
+
+    buttonSmall: {
+        borderRadius: (buttonSize / 3 * 2),
+        height: (buttonSize / 3 * 2),
+        width: (buttonSize / 3 * 2),
+    },
+
+    buttonTab: {
+        alignItems: "center",
+        backgroundColor: colors.primary,
+        justifyContent: "center",
+        margin: 1,
+        padding: 10,
     },
 
     buttonText: {
