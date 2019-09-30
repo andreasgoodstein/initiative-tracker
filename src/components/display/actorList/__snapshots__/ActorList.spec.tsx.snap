@@ -27,12 +27,10 @@ exports[`the ActorList component renders 1`] = `
         <Component
           actor={
             Object {
-              "clone": [Function],
               "hasActiveTurn": false,
               "id": 1,
               "initiative": 30,
               "name": "Test Actor",
-              "sort": [Function],
             }
           }
         />

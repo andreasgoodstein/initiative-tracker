@@ -3,7 +3,7 @@ import { ScrollView, Text, TextInput, View } from "react-native";
 
 import Footer from "../../components/display/footer/Footer";
 import Header from "../../components/display/header";
-import IActor, { sortActors } from "../../entities/IActor";
+import IActor from "../../entities/IActor";
 
 import connect, { RollInitiativeProps } from "./connect";
 import styles from "./styles";
