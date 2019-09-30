@@ -1,12 +1,34 @@
 import { AsyncStorage } from "react-native";
 import { applyMiddleware, combineReducers, createStore, Store } from "redux";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  createMigrate,
+  MigrationManifest,
+  persistReducer,
+  persistStore
+} from "redux-persist";
+import thunk from "redux-thunk";
 
 import actorReducer from "../reducers/actor";
 import gameReducer from "../reducers/game";
 
-import multi from "./middleware/dispatch_multi";
 import { IApplicationState, initialState } from "./state";
+
+const migrations: MigrationManifest = {
+  0: () => ({
+    ...initialState,
+    _persist: {
+      rehydrated: true,
+      version: 0
+    }
+  })
+};
+
+const persistConfig = {
+  key: "theinitiativetracker",
+  migrate: createMigrate(migrations),
+  storage: AsyncStorage,
+  version: 0
+};
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
 // using the reducer with the matching name. It's important that the names match exactly, and that
@@ -16,15 +38,10 @@ export const rootReducer = combineReducers<IApplicationState>({
   gameState: gameReducer
 });
 
-const persistConfig = {
-  key: "theinitiativetracker",
-  storage: AsyncStorage
-};
-
 export const getStore = (): Store<IApplicationState> => {
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  return applyMiddleware(multi)(createStore)(persistedReducer, initialState);
+  return applyMiddleware(thunk)(createStore)(persistedReducer, initialState);
 };
 
 export const getPersistor = (store: Store<IApplicationState>) => {

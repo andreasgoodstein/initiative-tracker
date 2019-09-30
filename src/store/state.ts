@@ -1,3 +1,4 @@
+import GameScreen from "../entities/GameScreenEnum";
 import { IActorState } from "../reducers/actor";
 import { IGameState } from "../reducers/game";
 
@@ -9,11 +10,11 @@ export interface IApplicationState {
 export const initialState: IApplicationState = {
   actor: {
     actorList: [],
-    isAddingActor: false,
-    isRollingInitiative: false,
+    nextActorId: 1
   },
 
   gameState: {
-    roundCount: 0,
-  },
+    gameScreen: GameScreen.Encounter,
+    roundCount: 0
+  }
 };
