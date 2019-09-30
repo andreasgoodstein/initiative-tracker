@@ -3,7 +3,7 @@
     "name": "The Initiative Tracker",
     "slug": "the-initiative-tracker",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": ["ios", "android", "web"],
     "version": "1.1.0",
     "orientation": "portrait",
