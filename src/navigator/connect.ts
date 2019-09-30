@@ -1,35 +1,47 @@
 import { connect } from "react-redux";
+
+import GameScreen from "../entities/GameScreenEnum";
 import { IApplicationState } from "../store/state";
 
 interface INavigatorState {
-    displayPage: Page;
+  displayPage: Page;
 }
 
 export type NavigatorProps = INavigatorState;
 
 export enum Page {
-    AddActor = "AddActor",
-    RollInitiative = "RollInitiative",
-    Combat = "Combat",
+  AddActor = "AddActor",
+  Initiative = "Initiative",
+  Encounter = "Encounter",
+  Party = "Party"
 }
 
 export const mapState = (state: IApplicationState): INavigatorState => {
-
-    if (state.actor.isAddingActor) {
-        return {
-            displayPage: Page.AddActor,
-        };
+  switch (state.gameState.gameScreen) {
+    case GameScreen.Initiative: {
+      return {
+        displayPage: Page.Initiative
+      };
     }
 
-    if (state.actor.isRollingInitiative) {
-        return {
-            displayPage: Page.RollInitiative,
-        };
+    case GameScreen.Party: {
+      return {
+        displayPage: Page.Party
+      };
     }
 
-    return {
-        displayPage: Page.Combat,
-    };
+    case GameScreen.AddActor: {
+      return {
+        displayPage: Page.AddActor
+      };
+    }
+
+    default:
+      return {
+        displayPage: Page.Encounter
+      };
+  }
 };
 
-export default (component: React.FunctionComponent<NavigatorProps>) => connect(mapState)(component);
+export default (component: React.FunctionComponent<NavigatorProps>) =>
+  connect(mapState)(component);
