@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-import Navigator from "./navigator";
+import Navigator from "./navigator/Navigator";
 
 import { getPersistor, getStore } from "./store";
 
