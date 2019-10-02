@@ -17,7 +17,11 @@ const testList: IActor[] = [
 describe("the ActorList component", () => {
   it("renders", () => {
     const wrapper = shallow(
-      <ActorList actorList={[...testList]} removeActor={() => undefined} />
+      <ActorList
+        actorList={[...testList]}
+        removeActor={() => undefined}
+        bumpActor={() => undefined}
+      />
     );
 
     expect(wrapper).not.toBeNull();

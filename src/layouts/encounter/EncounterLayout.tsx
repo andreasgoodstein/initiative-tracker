@@ -13,7 +13,8 @@ import styles from "./styles";
 
 export const EncounterLayout: React.FunctionComponent<EncounterLayoutProps> = ({
   actorList,
-  handleRemoveActorAction
+  handleRemoveActorAction,
+  handleBumpActorAction
 }) => {
   return (
     <View style={styles.container}>
@@ -29,6 +30,7 @@ export const EncounterLayout: React.FunctionComponent<EncounterLayoutProps> = ({
       <ScrollView>
         <ActorList
           actorList={actorList}
+          bumpActor={handleBumpActorAction}
           removeActor={handleRemoveActorAction}
         />
       </ScrollView>

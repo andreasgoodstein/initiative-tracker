@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
+import { Action, Dispatch } from "redux";
 
 import IActor from "../../entities/IActor";
 import { selectors } from "../../reducers/actor";
@@ -20,7 +20,7 @@ export const mapState = (state: IApplicationState): IMappedState => ({
     actorList: selectors.selectAllActors(state),
 });
 
-export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<Action>): IDispatchState => ({
     handleUpdateRolls: (actorList) => {
         dispatch(actions.updateActorRolls(actorList));
     },

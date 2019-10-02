@@ -20,6 +20,7 @@ exports[`the ActorList component renders 1`] = `
       activeOpacity={0.85}
       delayPressOut={100}
       key="1"
+      onLongPress={[Function]}
       onPress={[Function]}
       underlayColor="black"
     >

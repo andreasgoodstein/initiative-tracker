@@ -1,6 +1,6 @@
-import { AnyAction } from "redux";
+import { Action } from "redux";
 
-export enum GameActionTypes {
+export enum GameActionType {
   INCREMENT_ROUND_COUNTER = "@@game/INCREMENT_ROUND_COUNTER",
   RESET_ROUND_COUNTER = "@@game/RESET_ROUND_COUNTER",
   TRY_ADD_ACTOR = "@@game/TRY_ADD_ACTOR",
@@ -9,28 +9,28 @@ export enum GameActionTypes {
   GATHER_YOUR_PARTY = "@@game/GATHER_YOUR_PARTY"
 }
 
-const incrementRoundCounter = (): AnyAction => ({
-  type: GameActionTypes.INCREMENT_ROUND_COUNTER
+const incrementRoundCounter = (): Action => ({
+  type: GameActionType.INCREMENT_ROUND_COUNTER
 });
 
-const resetRoundCounter = (): AnyAction => ({
-  type: GameActionTypes.RESET_ROUND_COUNTER
+const resetRoundCounter = (): Action => ({
+  type: GameActionType.RESET_ROUND_COUNTER
 });
 
-const rollForInitiative = (): AnyAction => ({
-  type: GameActionTypes.ROLL_FOR_INITIATIVE
+const rollForInitiative = (): Action => ({
+  type: GameActionType.ROLL_FOR_INITIATIVE
 });
 
-const fightTheEncounter = (): AnyAction => ({
-  type: GameActionTypes.FIGHT_THE_ENCOUNTER
+const fightTheEncounter = (): Action => ({
+  type: GameActionType.FIGHT_THE_ENCOUNTER
 });
 
-const gatherYourParty = (): AnyAction => ({
-  type: GameActionTypes.GATHER_YOUR_PARTY
+const gatherYourParty = (): Action => ({
+  type: GameActionType.GATHER_YOUR_PARTY
 });
 
-const tryAddActor = (): AnyAction => ({
-  type: GameActionTypes.TRY_ADD_ACTOR
+const tryAddActor = (): Action => ({
+  type: GameActionType.TRY_ADD_ACTOR
 });
 
 export default {

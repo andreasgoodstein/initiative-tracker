@@ -7,25 +7,30 @@ import Actor from "../../../components/display/actor";
 
 import styles from "./styles";
 
-type RemoveActorFunction = (actor: IActor, actorList: IActor[]) => void;
+type AlterActorFunction = (actor: IActor) => void;
 
 export default ({
   actorList,
-  removeActor
+  removeActor,
+  bumpActor
 }: {
   actorList: IActor[];
-  removeActor: RemoveActorFunction;
+  removeActor: AlterActorFunction;
+  bumpActor: AlterActorFunction;
 }) => (
   <View style={styles.listContainer}>
     <ScrollView style={styles.listView}>
-      {actorList ? getSortedActorItems(actorList, removeActor) : null}
+      {actorList
+        ? getSortedActorItems(actorList, removeActor, bumpActor)
+        : null}
     </ScrollView>
   </View>
 );
 
 const getSortedActorItems = (
   actorList: IActor[],
-  removeActor: RemoveActorFunction
+  removeActor: AlterActorFunction,
+  bumpActor: AlterActorFunction
 ) => {
   const firstActor = actorList[0];
 
@@ -36,19 +41,22 @@ const getSortedActorItems = (
   const sortedItems = actorList.filter(Boolean).sort(sortActors);
 
   return sortedItems.map((actor) =>
-    getActorElement(actorList, actor, removeActor)
+    getActorElement(actor, removeActor, bumpActor)
   );
 };
 
 const getActorElement = (
-  actorList: IActor[],
   actor: IActor,
-  removeActor: RemoveActorFunction
+  removeActor: AlterActorFunction,
+  bumpActor: AlterActorFunction
 ) => (
   <TouchableHighlight
     key={actor.id}
     onPress={() => {
-      removeActorDialog(actorList, actor, removeActor);
+      alterActionDialog(actor, removeActor, "Delete");
+    }}
+    onLongPress={() => {
+      alterActionDialog(actor, bumpActor, "Bump to last");
     }}
   >
     <View>
@@ -57,20 +65,19 @@ const getActorElement = (
   </TouchableHighlight>
 );
 
-const removeActorDialog = (
-  actorList: IActor[],
+const alterActionDialog = (
   actor: IActor,
-  removeActor: RemoveActorFunction
+  alterActorFunction: AlterActorFunction,
+  title: string
 ) => {
-  // Works on both iOS and Android
-  Alert.alert(`Remove ${actor.name}?`, "", [
+  Alert.alert(`${title}`, `${actor.name}?`, [
     {
       style: "cancel",
       text: "Cancel"
     },
     {
       onPress: () => {
-        removeActor(actor, actorList);
+        alterActorFunction(actor);
       },
       text: "OK"
     }

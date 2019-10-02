@@ -1,9 +1,9 @@
 import { Action } from "redux";
 
 import IActor, { Actor } from "../../entities/IActor";
-import { GameActionTypes } from "../../reducers/game/game_actions";
+import { GameActionType } from "../../reducers/game/game_actions";
 
-import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { ThunkAction } from "redux-thunk";
 import { IApplicationState } from "store/state";
 import {
   getNextActiveActor,
@@ -11,12 +11,13 @@ import {
   removeActorFromList
 } from "./helpers";
 
-export enum ActorActionTypes {
+export enum ActorActionType {
   ADD_ACTOR = "@@actor/ADD",
   REMOVE_ACTOR = "@@actor/REMOVE",
   UPDATE_ACTOR_ROLL = "@@actor/UPDATE_ROLL",
   HIGHLIGHT_NEXT_ACTOR = "@@actor/HIGHLIGHT_NEXT",
-  ROLL_FOR_ALL_ACTORS = "@@actor/ROLL_FOR_ALL"
+  BUMP_ACTOR_TO_LAST = "@@actor/BUMP_ACTOR_TO_LAST",
+  UPDATE_ACTOR_LIST = "@@actor/UPDATE_ACTOR_LIST"
 }
 
 export interface IActorAction extends Action {
@@ -30,8 +31,8 @@ export interface IActorArrayAction extends Action {
 const addActor = (
   actorName: string
 ): ThunkAction<void, IApplicationState, {}, IActorAction> => (
-  dispatch: ThunkDispatch<IApplicationState, {}, IActorAction>,
-  getState: () => IApplicationState
+  dispatch,
+  getState
 ) => {
   const {
     actor: { nextActorId }
@@ -41,14 +42,13 @@ const addActor = (
 
   dispatch({
     payload: { actor: newActor },
-    type: ActorActionTypes.ADD_ACTOR
+    type: ActorActionType.ADD_ACTOR
   });
 };
 
-const createRemoveActorAction = (actor: IActor) => (
-  dispatch: ThunkDispatch<IApplicationState, {}, Action>,
-  getState: () => IApplicationState
-) => {
+const removeActor = (
+  actor: IActor
+): ThunkAction<void, IApplicationState, {}, Action> => (dispatch, getState) => {
   const {
     actor: { actorList }
   } = getState();
@@ -57,20 +57,22 @@ const createRemoveActorAction = (actor: IActor) => (
 
   dispatch({
     payload: { actorList: newActorArray },
-    type: ActorActionTypes.REMOVE_ACTOR
+    type: ActorActionType.UPDATE_ACTOR_LIST
   });
 
   if (isCurrentActorTopOfTheRound(newActorArray)) {
     dispatch({
-      type: GameActionTypes.INCREMENT_ROUND_COUNTER
+      type: GameActionType.INCREMENT_ROUND_COUNTER
     });
   }
 };
 
-const createHighlightNextActorAction = () => (
-  dispatch: ThunkDispatch<{}, {}, Action>,
-  getState: () => IApplicationState
-) => {
+const highlightNextActor = (): ThunkAction<
+  void,
+  IApplicationState,
+  {},
+  Action
+> => (dispatch, getState) => {
   const {
     actor: { actorList }
   } = getState();
@@ -79,29 +81,45 @@ const createHighlightNextActorAction = () => (
 
   dispatch({
     payload: { actorList: newActorArray },
-    type: ActorActionTypes.HIGHLIGHT_NEXT_ACTOR
+    type: ActorActionType.UPDATE_ACTOR_LIST
   });
 
   if (isCurrentActorTopOfTheRound(newActorArray)) {
     dispatch({
-      type: GameActionTypes.INCREMENT_ROUND_COUNTER
+      type: GameActionType.INCREMENT_ROUND_COUNTER
     });
   }
 };
 
+const updateActorRolls = (actorList: IActor[]): IActorArrayAction => ({
+  payload: { actorList },
+  type: ActorActionType.UPDATE_ACTOR_LIST
+});
+
+const bumpActorToLast = (
+  actor: IActor
+): ThunkAction<void, IApplicationState, {}, IActorArrayAction> => (
+  dispatch,
+  getState
+) => {
+  const {
+    actor: { actorList }
+  } = getState();
+
+  const actorListWithoutActor = removeActorFromList(actor, actorList);
+
+  const bumpedActorList = [...actorListWithoutActor, actor];
+
+  dispatch({
+    payload: { actorList: bumpedActorList },
+    type: ActorActionType.UPDATE_ACTOR_LIST
+  });
+};
+
 export default {
   addActor,
-
-  removeActor: (actor: IActor) => createRemoveActorAction(actor),
-
-  updateActorRolls: (actorList: IActor[]): IActorArrayAction => ({
-    payload: { actorList },
-    type: ActorActionTypes.UPDATE_ACTOR_ROLL
-  }),
-
-  rollAllActors: (): Action => ({
-    type: ActorActionTypes.ROLL_FOR_ALL_ACTORS
-  }),
-
-  highlightNextActor: () => createHighlightNextActorAction()
+  bumpActorToLast,
+  highlightNextActor,
+  removeActor,
+  updateActorRolls
 };

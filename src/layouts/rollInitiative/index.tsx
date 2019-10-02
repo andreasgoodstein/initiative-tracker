@@ -9,7 +9,6 @@ import connect, { RollInitiativeProps } from "./connect";
 import styles from "./styles";
 
 interface IPageState {
-  actorList: IActor[];
   actorDictionary: Map<number, IActor>;
 }
 
@@ -37,13 +36,20 @@ class RollInitiativePage extends React.PureComponent<
 
     this.state = {
       actorDictionary: parseActorsIntoDictionary(this.props.actorList),
-      actorList: this.props.actorList
     };
-
-    this.getInitiativeInputField = this.getInitiativeInputField.bind(this);
   }
 
   public render() {
+    const { actorList } = this.props;
+
+    const alphabeticalActorList = [...actorList].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+
+    const actorListElements = alphabeticalActorList.map(
+      this.getInitiativeInputField
+    );
+
     return (
       <View style={styles.container}>
         <Header />
@@ -51,11 +57,7 @@ class RollInitiativePage extends React.PureComponent<
         <Text style={styles.title}>Roll For Initiative</Text>
 
         <ScrollView>
-          <View style={styles.list}>
-            {this.state.actorList
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .map(this.getInitiativeInputField)}
-          </View>
+          <View style={styles.list}>{actorListElements}</View>
         </ScrollView>
 
         <Footer />
@@ -72,14 +74,13 @@ class RollInitiativePage extends React.PureComponent<
     newActorDictionary.set(updatedActor.id, updatedActor);
 
     const updatedState = {
-      ...this.state,
       actorDictionary: newActorDictionary
     };
 
     this.setState(updatedState);
   }
 
-  private getInitiativeInputField(actor: IActor): React.ReactNode {
+  private getInitiativeInputField = (actor: IActor): React.ReactNode => {
     const actorDictionary = this.state.actorDictionary;
 
     const getUpdatedState = (roll: string): IActor | undefined => {

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
+import { Action, Dispatch } from "redux";
 
-import GameActionTypes from "../../../reducers/game/game_actions";
+import GameActionType from "../../../reducers/game/game_actions";
 
 interface IDispatchState {
   handleAddActorAction(): void;
@@ -9,9 +9,9 @@ interface IDispatchState {
 
 export type AddActorButtonProps = IDispatchState;
 
-export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<Action>): IDispatchState => ({
   handleAddActorAction: () => {
-    dispatch(GameActionTypes.tryAddActor());
+    dispatch(GameActionType.tryAddActor());
   }
 });
 

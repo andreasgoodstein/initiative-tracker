@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { AnyAction, Dispatch } from "redux";
+import { Action, Dispatch } from "redux";
 
 import GameActions from "../../../reducers/game/game_actions";
 
@@ -11,7 +11,7 @@ interface IDispatchState {
 
 export type FooterProps = IDispatchState;
 
-export const mapDispatch = (dispatch: Dispatch<AnyAction>): IDispatchState => ({
+export const mapDispatch = (dispatch: Dispatch<Action>): IDispatchState => ({
   fightTheEncounter: () => {
     dispatch(GameActions.fightTheEncounter());
   },

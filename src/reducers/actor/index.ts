@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 
-import { ActorActionTypes } from "./actions";
+import { ActorActionType } from "./actions";
 import initialState, { IActorState } from "./state";
 
 const reducer: Reducer<IActorState> = (
@@ -8,26 +8,14 @@ const reducer: Reducer<IActorState> = (
   action = { type: "" }
 ) => {
   switch (action.type) {
-    case ActorActionTypes.ADD_ACTOR:
+    case ActorActionType.ADD_ACTOR:
       return {
         ...actorState,
         actorList: [...actorState.actorList, action.payload.actor],
         nextActorId: actorState.nextActorId + 1
       };
 
-    case ActorActionTypes.REMOVE_ACTOR:
-      return {
-        ...actorState,
-        actorList: action.payload.actorList
-      };
-
-    case ActorActionTypes.UPDATE_ACTOR_ROLL:
-      return {
-        ...actorState,
-        actorList: action.payload.actorList
-      };
-
-    case ActorActionTypes.HIGHLIGHT_NEXT_ACTOR:
+    case ActorActionType.UPDATE_ACTOR_LIST:
       return {
         ...actorState,
         actorList: action.payload.actorList
