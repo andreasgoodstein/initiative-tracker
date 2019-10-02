@@ -9,7 +9,8 @@ import {
 import thunk from "redux-thunk";
 
 import actorReducer from "../reducers/actor";
-import gameReducer from "../reducers/game";
+import gameReducer from "../reducers/game/game_reducer";
+import partyReducer from "../reducers/party/party_reducer";
 
 import { IApplicationState, initialState } from "./state";
 
@@ -34,8 +35,9 @@ const persistConfig = {
 // using the reducer with the matching name. It's important that the names match exactly, and that
 // the reducer acts on the corresponding ApplicationState property type.
 export const rootReducer = combineReducers<IApplicationState>({
-  actor: actorReducer,
-  gameState: gameReducer
+  actorState: actorReducer,
+  gameState: gameReducer,
+  partyState: partyReducer
 });
 
 export const getStore = (): Store<IApplicationState> => {

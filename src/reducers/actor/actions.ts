@@ -35,7 +35,7 @@ const addActor = (
   getState
 ) => {
   const {
-    actor: { nextActorId }
+    actorState: { nextActorId }
   } = getState();
 
   const newActor = new Actor(nextActorId, actorName);
@@ -50,7 +50,7 @@ const removeActor = (
   actor: IActor
 ): ThunkAction<void, IApplicationState, {}, Action> => (dispatch, getState) => {
   const {
-    actor: { actorList }
+    actorState: { actorList }
   } = getState();
 
   const newActorArray = removeActorFromList(actor, actorList);
@@ -74,7 +74,7 @@ const highlightNextActor = (): ThunkAction<
   Action
 > => (dispatch, getState) => {
   const {
-    actor: { actorList }
+    actorState: { actorList }
   } = getState();
 
   const newActorArray = getNextActiveActor(actorList);
@@ -103,7 +103,7 @@ const bumpActorToLast = (
   getState
 ) => {
   const {
-    actor: { actorList }
+    actorState: { actorList }
   } = getState();
 
   const actorListWithoutActor = removeActorFromList(actor, actorList);

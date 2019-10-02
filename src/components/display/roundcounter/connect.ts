@@ -1,7 +1,9 @@
 import { Dispatch } from "react";
 import { connect } from "react-redux";
 import { Action } from "redux";
-import { gameActions, gameSelectors } from "../../../reducers/game";
+
+import gameActions from "../../../reducers/game/game_actions";
+import gameSelectors from "../../../reducers/game/game_selectors";
 import { IApplicationState } from "../../../store/state";
 
 interface IMappedState {

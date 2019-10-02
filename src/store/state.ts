@@ -1,14 +1,16 @@
 import GameScreen from "../entities/GameScreenEnum";
 import { IActorState } from "../reducers/actor";
-import { IGameState } from "../reducers/game";
+import { IGameState } from "../reducers/game/game_state";
+import { IPartyState } from "../reducers/party/party_state";
 
 export interface IApplicationState {
-  readonly actor: IActorState;
+  readonly actorState: IActorState;
   readonly gameState: IGameState;
+  readonly partyState: IPartyState;
 }
 
 export const initialState: IApplicationState = {
-  actor: {
+  actorState: {
     actorList: [],
     nextActorId: 1
   },
@@ -16,5 +18,11 @@ export const initialState: IApplicationState = {
   gameState: {
     gameScreen: GameScreen.Encounter,
     roundCount: 0
+  },
+
+  partyState: {
+    party: {
+      members: []
+    }
   }
 };
