@@ -1,9 +1,8 @@
 import { Reducer } from "redux";
 
 import GameScreen from "../../entities/GameScreenEnum";
-import { ActorActionType } from "./../actor/actions";
+import { ActorActionType, GameActionType } from "../action_types";
 
-import { GameActionType } from "./game_actions";
 import initialState, { IGameState } from "./game_state";
 
 const gameReducer: Reducer<IGameState> = (

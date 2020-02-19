@@ -16,7 +16,7 @@ export default ({
 }: {
   actorList: IActor[];
   removeActor: AlterActorFunction;
-  bumpActor: AlterActorFunction;
+  bumpActor: AlterActorFunction | undefined;
 }) => (
   <View style={styles.listContainer}>
     <ScrollView style={styles.listView}>
@@ -30,7 +30,7 @@ export default ({
 const getSortedActorItems = (
   actorList: IActor[],
   removeActor: AlterActorFunction,
-  bumpActor: AlterActorFunction
+  bumpActor: AlterActorFunction | undefined
 ) => {
   const firstActor = actorList[0];
 
@@ -48,7 +48,7 @@ const getSortedActorItems = (
 const getActorElement = (
   actor: IActor,
   removeActor: AlterActorFunction,
-  bumpActor: AlterActorFunction
+  bumpActor: AlterActorFunction | undefined
 ) => (
   <TouchableHighlight
     key={actor.id}
@@ -56,7 +56,9 @@ const getActorElement = (
       alterActionDialog(actor, removeActor, "Delete");
     }}
     onLongPress={() => {
-      alterActionDialog(actor, bumpActor, "Bump to last");
+      if (bumpActor) {
+        alterActionDialog(actor, bumpActor, "Bump to last");
+      }
     }}
   >
     <View>

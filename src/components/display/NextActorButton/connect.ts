@@ -4,7 +4,8 @@ import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 import IActor from "../../../entities/IActor";
-import { actions as ActorAction, selectors } from "../../../reducers/actor";
+import ActorAction from "../../../reducers/actor/actor_actions";
+import ActorSelectors from "../../../reducers/actor/actor_selectors";
 import { IApplicationState } from "../../../store/state";
 
 interface IMappedState {
@@ -18,7 +19,7 @@ interface IDispatchState {
 export type NextActorButtonProps = IMappedState & IDispatchState;
 
 export const mapState = (state: IApplicationState): IMappedState => ({
-  actorList: selectors.selectAllActors(state)
+  actorList: ActorSelectors.selectAllActors(state)
 });
 
 export const mapDispatch = (

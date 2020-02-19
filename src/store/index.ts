@@ -8,18 +8,18 @@ import {
 } from "redux-persist";
 import thunk from "redux-thunk";
 
-import actorReducer from "../reducers/actor";
+import actorReducer from "../reducers/actor/actor_reducer";
 import gameReducer from "../reducers/game/game_reducer";
 import partyReducer from "../reducers/party/party_reducer";
 
 import { IApplicationState, initialState } from "./state";
 
 const migrations: MigrationManifest = {
-  0: () => ({
+  1: () => ({
     ...initialState,
     _persist: {
       rehydrated: true,
-      version: 0
+      version: 1
     }
   })
 };
@@ -28,7 +28,7 @@ const persistConfig = {
   key: "theinitiativetracker",
   migrate: createMigrate(migrations),
   storage: AsyncStorage,
-  version: 0
+  version: 1
 };
 
 // Whenever an action is dispatched, Redux will update each top-level application state property

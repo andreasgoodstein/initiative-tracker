@@ -1,5 +1,5 @@
 import GameScreen from "../entities/GameScreenEnum";
-import { IActorState } from "../reducers/actor";
+import { IActorState } from "../reducers/actor/actor_state";
 import { IGameState } from "../reducers/game/game_state";
 import { IPartyState } from "../reducers/party/party_state";
 

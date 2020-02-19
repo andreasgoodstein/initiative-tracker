@@ -1,13 +1,8 @@
 import { Action } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { IApplicationState } from "store/state";
 
-export enum GameActionType {
-  INCREMENT_ROUND_COUNTER = "@@game/INCREMENT_ROUND_COUNTER",
-  RESET_ROUND_COUNTER = "@@game/RESET_ROUND_COUNTER",
-  TRY_ADD_ACTOR = "@@game/TRY_ADD_ACTOR",
-  ROLL_FOR_INITIATIVE = "@@game/ROLL_FOR_INITIATIVE",
-  FIGHT_THE_ENCOUNTER = "@@game/FIGHT_THE_ENCOUNTER",
-  GATHER_YOUR_PARTY = "@@game/GATHER_YOUR_PARTY"
-}
+import { ActorActionType, GameActionType } from "../action_types";
 
 const incrementRoundCounter = (): Action => ({
   type: GameActionType.INCREMENT_ROUND_COUNTER
@@ -33,11 +28,38 @@ const tryAddActor = (): Action => ({
   type: GameActionType.TRY_ADD_ACTOR
 });
 
+const startAnEncounter = (): ThunkAction<
+  void,
+  IApplicationState,
+  {},
+  Action
+> => (dispatch, getState) => {
+  const {
+    partyState: {
+      party: { members }
+    }
+  } = getState();
+
+  dispatch({
+    type: GameActionType.START_AN_ENCOUNTER
+  });
+
+  dispatch({
+    payload: { actorList: members },
+    type: ActorActionType.UPDATE_ACTOR_LIST
+  });
+
+  dispatch({
+    type: GameActionType.FIGHT_THE_ENCOUNTER
+  });
+};
+
 export default {
   fightTheEncounter,
   gatherYourParty,
   incrementRoundCounter,
   resetRoundCounter,
   rollForInitiative,
+  startAnEncounter,
   tryAddActor
 };
