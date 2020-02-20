@@ -1,9 +1,9 @@
-import { Ionicons } from "@expo/vector-icons";
-import React from "react";
-import { TouchableHighlight } from "react-native";
+import React from 'react';
+import IosRedo from 'react-ionicons/lib/IosRedo';
+import { TouchableHighlight } from 'react-native';
 
-import styles from "../../../styles/components";
-import connect, { NextActorButtonProps } from "./connect";
+import styles from '../../../styles/components';
+import connect, { NextActorButtonProps } from './connect';
 
 export const NextActorButton = ({
   actorList,
@@ -16,7 +16,7 @@ export const NextActorButton = ({
       }}
       style={styles.button}
     >
-      <Ionicons name={"ios-redo"} size={32} color={"white"} />
+      <IosRedo fontSize="32px" color={'white'} />
     </TouchableHighlight>
   );
 };

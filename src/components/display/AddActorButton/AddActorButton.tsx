@@ -1,10 +1,10 @@
-import { Ionicons } from "@expo/vector-icons";
-import React from "react";
-import { TouchableHighlight } from "react-native";
+import MdPersonAdd from 'react-ionicons/lib/MdPersonAdd';
+import React from 'react';
+import { TouchableHighlight } from 'react-native';
 
-import styles from "../../../styles/components";
+import styles from '../../../styles/components';
 
-import connect, { AddActorButtonProps } from "./connect";
+import connect, { AddActorButtonProps } from './connect';
 
 export const AddActorButton = ({
   handleAddActorAction
@@ -16,7 +16,7 @@ export const AddActorButton = ({
 
   return (
     <TouchableHighlight style={buttonStyle} onPress={handleAddActorAction}>
-      <Ionicons name="md-person-add" size={32} color="white" />
+      <MdPersonAdd fontSize="32px" color="white" />
     </TouchableHighlight>
   );
 };

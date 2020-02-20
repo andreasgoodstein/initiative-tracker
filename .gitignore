@@ -1,13 +1,5 @@
 node_modules
 coverage
 dist
-build
 
 .cache
-.expo
-npm-debug.*
-
-*.jks
-*.p12
-*.key
-*.mobileprovision

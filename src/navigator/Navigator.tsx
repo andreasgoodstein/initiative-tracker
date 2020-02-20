@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import connect, { NavigatorProps, Page } from "./connect";
+import connect, { NavigatorProps, Page } from './connect';
 
-import AddActorLayout from "../layouts/addActor";
-import CombatLayout from "../layouts/encounter/EncounterLayout";
-import PartyLayout from "../layouts/gatherParty/PartyLayout";
-import RollInitiative from "../layouts/rollInitiative";
+import AddActorLayout from '../layouts/addActor';
+import CombatLayout from '../layouts/encounter/EncounterLayout';
+import PartyLayout from '../layouts/gatherParty/PartyLayout';
+import RollInitiative from '../layouts/rollInitiative';
 
 export const Navigator: React.FunctionComponent<NavigatorProps> = ({
   displayPage

@@ -1,18 +1,18 @@
-import { AsyncStorage } from "react-native";
-import { applyMiddleware, combineReducers, createStore, Store } from "redux";
+import storage from 'redux-persist/lib/storage';
+import { applyMiddleware, combineReducers, createStore, Store } from 'redux';
 import {
   createMigrate,
   MigrationManifest,
   persistReducer,
   persistStore
-} from "redux-persist";
-import thunk from "redux-thunk";
+} from 'redux-persist';
+import thunk from 'redux-thunk';
 
-import actorReducer from "../reducers/actor/actor_reducer";
-import gameReducer from "../reducers/game/game_reducer";
-import partyReducer from "../reducers/party/party_reducer";
+import actorReducer from '../reducers/actor/actor_reducer';
+import gameReducer from '../reducers/game/game_reducer';
+import partyReducer from '../reducers/party/party_reducer';
 
-import { IApplicationState, initialState } from "./state";
+import { IApplicationState, initialState } from './state';
 
 const migrations: MigrationManifest = {
   1: () => ({
@@ -25,9 +25,9 @@ const migrations: MigrationManifest = {
 };
 
 const persistConfig = {
-  key: "theinitiativetracker",
+  key: 'theinitiativetracker',
   migrate: createMigrate(migrations),
-  storage: AsyncStorage,
+  storage,
   version: 1
 };
 
