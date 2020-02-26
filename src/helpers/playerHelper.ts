@@ -11,9 +11,12 @@ export const createNewPlayer = (): Player => {
 };
 
 export const sortPlayer = (p1: Player, p2: Player): number => {
-  return p1.initiative === p2.initiative
+  const p1Initiative = parseInt(p1.initiative, 10) || 0;
+  const p2Initiative = parseInt(p2.initiative, 10) || 0;
+
+  return p1Initiative === p2Initiative
     ? 0
-    : p1.initiative > p2.initiative
+    : p1Initiative > p2Initiative
     ? -1
     : 1;
 };

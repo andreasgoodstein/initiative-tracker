@@ -1,5 +1,4 @@
-import React from 'react';
-import { debounce } from 'throttle-debounce';
+import React, { useState } from 'react';
 
 import './Player.less';
 
@@ -9,24 +8,34 @@ type PlayerProps = {
   updatePlayer: (player: Player) => void;
 };
 export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
-  const className = hasTurn ? 'player active' : 'player';
+  const [name, setName] = useState(player.name);
+  const [initiative, setInitiative] = useState(player.initiative);
+  const [updateTimeout, setUpdateTimeout] = useState();
 
-  const debounceUpdate = debounce(200, false, updatePlayer);
+  const changeValueHandler = (newPlayer: Player) => {
+    clearTimeout(updateTimeout);
+    setUpdateTimeout(setTimeout(() => updatePlayer(newPlayer), 300));
+
+    setName(newPlayer.name);
+    setInitiative(newPlayer.initiative);
+  };
+
+  const className = hasTurn ? 'player active' : 'player';
 
   return (
     <div className={className}>
       <input
-        onChange={({ target }) =>
-          debounceUpdate({ ...player, name: target.value })
-        }
-        value={player.name}
+        onChange={({ target }) => {
+          changeValueHandler({ ...player, name: target.value, initiative });
+        }}
+        value={name}
       ></input>
       <input
         className="input-initiative"
         onChange={({ target }) => {
-          debounceUpdate({ ...player, initiative: target.value });
+          changeValueHandler({ ...player, name, initiative: target.value });
         }}
-        value={player.initiative}
+        value={initiative}
       ></input>
     </div>
   );
