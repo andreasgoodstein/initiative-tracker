@@ -1,0 +1,70 @@
+.buttons {
+  &:extend(.row, .spacing);
+
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  &:extend(.row, .spacing);
+
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.player-list {
+  width: 100%;
+}
+
+.player-list-item {
+  &:extend(.row);
+
+  justify-content: space-evenly;
+  flex: 1;
+  margin-top: 5px;
+  width: 100%;
+
+  .player {
+    flex: 1;
+  }
+}
+
+.player-list-wrapper {
+  &:extend(.column);
+
+  flex: 1;
+  justify-content: space-between;
+  min-height: 70vh;
+  min-width: 90vw;
+  padding: 1rem;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.round-counter {
+  &:extend(.row, .spacing);
+
+  justify-content: center;
+
+  .counter {
+    min-height: 2rem;
+  }
+
+  .reset-btn {
+    margin-left: 1rem;
+  }
+}
+
+.spacing {
+  margin-top: 1rem;
+}

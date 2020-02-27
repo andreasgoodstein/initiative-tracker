@@ -1,0 +1,31 @@
+.input-name {
+  min-width: 180px;
+}
+
+.input-initiative {
+  margin-left: 10px;
+  width: 20px;
+
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+
+.player {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  input {
+    border: 2px solid black;
+  }
+
+  &.active {
+    .input-name {
+      border-left: 4px solid blue;
+    }
+    .input-initiative {
+      border-right: 4px solid blue;
+    }
+  }
+}
