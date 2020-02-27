@@ -19,28 +19,28 @@ export const Button = ({ onClick, type, text }: ButtonProps) => {
     case ButtonType.AddPlayer:
       return (
         <button onClick={onClick}>
-          <img src={AddPlayerIcon} />
+          <img src={AddPlayerIcon} alt="add player" />
         </button>
       );
 
     case ButtonType.NextPlayer:
       return (
         <button onClick={onClick}>
-          <img src={NextPlayerIcon} />
+          <img src={NextPlayerIcon} alt="next player" />
         </button>
       );
 
     case ButtonType.RemovePlayer:
       return (
         <button className="delete-btn" onClick={onClick}>
-          <img src={RemovePlayerIcon} />
+          <img src={RemovePlayerIcon} alt="remove player" />
         </button>
       );
 
     case ButtonType.Reset:
       return (
         <button className="reset-btn" onClick={onClick}>
-          <img src={ResetIcon} />
+          <img src={ResetIcon} alt="reset" />
         </button>
       );
 
