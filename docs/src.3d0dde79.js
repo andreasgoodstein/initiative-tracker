@@ -43,4 +43,4 @@ module.exports="https://andreasgoodstein.github.io/initiative-tracker/refresh.79
 },{"react":"n8MK","../types/enums":"XCoe","../helpers/playerHelper":"wh6w","./Button":"UI9U","./Counter":"UjZ8","./Player":"UgwX","./PlayerList.less":"Olbm"}],"zo2T":[function(require,module,exports) {
 "use strict";var e=u(require("react")),r=require("react-dom"),t=require("./components/PlayerList");function u(e){return e&&e.__esModule?e:{default:e}}(0,r.render)(e.default.createElement(t.PlayerList,null),document.getElementById("root"));
 },{"react":"n8MK","react-dom":"NKHc","./components/PlayerList":"TDgL"}]},{},["zo2T"], null)
-//# sourceMappingURL=https://andreasgoodstein.github.io/initiative-tracker/src.45992b80.js.map
+//# sourceMappingURL=https://andreasgoodstein.github.io/initiative-tracker/src.3d0dde79.js.map
