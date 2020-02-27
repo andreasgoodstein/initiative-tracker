@@ -25,17 +25,21 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
   return (
     <div className={className}>
       <input
+        className="input-name"
         onChange={({ target }) => {
           changeValueHandler({ ...player, name: target.value, initiative });
         }}
         value={name}
+        type="text"
       ></input>
       <input
         className="input-initiative"
         onChange={({ target }) => {
           changeValueHandler({ ...player, name, initiative: target.value });
         }}
+        pattern="[0-9\/]*"
         value={initiative}
+        type="number"
       ></input>
     </div>
   );

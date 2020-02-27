@@ -6,6 +6,7 @@
   "background_color": "#fff",
   "theme_color": "#fff",
   "lang": "en",
+  "orientation": "portrait",
   "description": "An app for keeping track of initiative for Dungeons & Dragons 5e",
   "icons": [
     {

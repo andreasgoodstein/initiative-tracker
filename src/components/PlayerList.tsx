@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
+import { ButtonType } from '../types/enums';
 import { createNewPlayer, sortPlayer } from '../helpers/playerHelper';
+import { Button } from './Button';
+import { Counter } from './Counter';
 import { Player } from './Player';
-
-import AddPlayerIcon from '../../assets/person-add.svg';
-import NextPlayerIcon from '../../assets/arrow-forward-circle.svg';
-import DeletePlayerIcon from '../../assets/close.svg';
 
 import './PlayerList.less';
 
 export const PlayerList = () => {
   const [playerList, setPlayerList] = useState<Player[]>([]);
   const [playerTurn, setPlayerTurn] = useState(0);
+  const [roundCount, setRoundCount] = useState(1);
 
   const addPlayer = () => {
     setPlayerList([...playerList, createNewPlayer()]);
@@ -48,7 +48,15 @@ export const PlayerList = () => {
       return;
     }
 
+    if (playerTurn + 1 === playerList.length) {
+      setRoundCount(roundCount + 1);
+    }
+
     setPlayerTurn((playerTurn + 1) % playerList.length);
+  };
+
+  const resetRoundCount = () => {
+    setRoundCount(1);
   };
 
   const playerElementList = playerList.map((player: Player, index: number) => (
@@ -58,34 +66,38 @@ export const PlayerList = () => {
         player={player}
         updatePlayer={updatePlayer}
       />
-      <button className="delete-btn" onClick={() => removePlayer(player.id)}>
-        <img src={DeletePlayerIcon} />
-      </button>
+
+      <Button
+        type={ButtonType.RemovePlayer}
+        onClick={() => removePlayer(player.id)}
+      />
     </span>
   ));
 
   return (
-    <div className="player-list-wrapper">
-      {/* <div className="spacing">
-        <label>
-          Round <input></input>
-        </label>
-      </div> */}
+    <>
+      <div className="round-counter">
+        <Counter label="Round" count={roundCount} />
 
-      <div className="spacing header">
-        <span>Name</span>
-        <span>Initiative</span>
+        {roundCount !== 1 && (
+          <Button type={ButtonType.Reset} onClick={resetRoundCount} />
+        )}
       </div>
-      <div className="spacing player-list">{playerElementList}</div>
 
-      <div className="spacing buttons">
-        <button onClick={addPlayer}>
-          <img src={AddPlayerIcon} />
-        </button>
-        <button onClick={nextPlayer}>
-          <img src={NextPlayerIcon} />
-        </button>
+      <div className="player-list-wrapper">
+        <div className="header">
+          <span>Name</span>
+          <span>Initiative</span>
+        </div>
+
+        <div className="player-list">{playerElementList}</div>
+
+        <div className="buttons">
+          <Button type={ButtonType.AddPlayer} onClick={addPlayer} />
+
+          <Button type={ButtonType.NextPlayer} onClick={nextPlayer} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
