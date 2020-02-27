@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './Player.less';
+import { Jon } from './Jon';
 
 type PlayerProps = {
   hasTurn: boolean;
@@ -22,7 +23,9 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
 
   const className = hasTurn ? 'player active' : 'player';
 
-  return (
+  return initiative === '½' ? (
+    <Jon />
+  ) : (
     <div className={className}>
       <input
         className="input-name"
@@ -35,12 +38,21 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
       <input
         className="input-initiative"
         onChange={({ target }) => {
-          changeValueHandler({ ...player, name, initiative: target.value });
+          changeValueHandler({
+            ...player,
+            name,
+            initiative: getSanitizedInitiative(target.value)
+          });
         }}
-        pattern="[0-9\/]*"
+        pattern="[0-9½]*"
         value={initiative}
-        type="number"
+        type="text"
+        inputMode="numeric"
       ></input>
     </div>
   );
 };
+
+function getSanitizedInitiative(initiative: string): string {
+  return initiative.replace(/[^0-9½]+/g, '');
+}
