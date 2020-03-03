@@ -45,10 +45,8 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
             initiative: getSanitizedInitiative(target.value)
           });
         }}
-        pattern="[0-9½]*"
         value={initiative}
         type="number"
-        inputMode="numeric"
       />
     </div>
   );
