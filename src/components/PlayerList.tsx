@@ -78,6 +78,13 @@ export const PlayerList = () => {
           return;
         }
 
+        if (
+          playerList[playerIndex].initiative !==
+          playerList[playerIndex + 1].initiative
+        ) {
+          return;
+        }
+
         const newPlayerList = movePlayerDown(playerList, playerIndex);
 
         setPlayerList(newPlayerList);
@@ -87,6 +94,13 @@ export const PlayerList = () => {
 
       case 'up': {
         if (playerIndex === 0) {
+          return;
+        }
+
+        if (
+          playerList[playerIndex].initiative !==
+          playerList[playerIndex - 1].initiative
+        ) {
           return;
         }
 

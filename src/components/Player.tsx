@@ -47,7 +47,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
         }}
         pattern="[0-9½]*"
         value={initiative}
-        type="text"
+        type="number"
         inputMode="numeric"
       />
     </div>
