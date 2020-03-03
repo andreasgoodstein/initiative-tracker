@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 
 import { ButtonType } from '../types/enums';
-import { createNewPlayer, sortPlayer } from '../helpers/playerHelper';
+import {
+  createNewPlayer,
+  sortPlayer,
+  getOverlappingInitiativeMap,
+  movePlayerDown,
+  movePlayerUp
+} from '../helpers/playerHelper';
 import { Button } from './Button';
 import { Counter } from './Counter';
-import { Player } from './Player';
+import { PlayerListItem } from './PlayerListItem';
 
 import './PlayerList.less';
 
@@ -59,20 +65,61 @@ export const PlayerList = () => {
     setRoundCount(1);
   };
 
-  const playerElementList = playerList.map((player: Player, index: number) => (
-    <span className="player-list-item" key={`${player.id}`}>
-      <Player
+  const movePlayer = (playerId: string, moveDirection: string) => {
+    const playerIndex = playerList.findIndex(player => player.id === playerId);
+
+    if (playerIndex < 0) {
+      return;
+    }
+
+    switch (moveDirection) {
+      case 'down': {
+        if (playerIndex + 1 === playerList.length) {
+          return;
+        }
+
+        const newPlayerList = movePlayerDown(playerList, playerIndex);
+
+        setPlayerList(newPlayerList);
+
+        return;
+      }
+
+      case 'up': {
+        if (playerIndex === 0) {
+          return;
+        }
+
+        const newPlayerList = movePlayerUp(playerList, playerIndex);
+
+        setPlayerList(newPlayerList);
+
+        return;
+      }
+
+      default:
+        return;
+    }
+  };
+
+  const initiativeMap = getOverlappingInitiativeMap(playerList);
+
+  const playerElementList = playerList.map((player, index) => {
+    const playerInitiativeIsOverlapping = Boolean(
+      (initiativeMap.get(player.initiative) || 0) > 1
+    );
+
+    return (
+      <PlayerListItem
         hasTurn={index === playerTurn}
         player={player}
+        movePlayer={playerInitiativeIsOverlapping ? movePlayer : undefined}
+        removePlayer={removePlayer}
         updatePlayer={updatePlayer}
+        key={`${index}-${player.id}`}
       />
-
-      <Button
-        type={ButtonType.RemovePlayer}
-        onClick={() => removePlayer(player.id)}
-      />
-    </span>
-  ));
+    );
+  });
 
   return (
     <>

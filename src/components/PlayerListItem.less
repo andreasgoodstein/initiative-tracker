@@ -1,0 +1,29 @@
+@import '../styles.less';
+
+.player-list-item {
+  &:extend(.row);
+
+  justify-content: space-evenly;
+  flex: 1;
+  margin-top: 5px;
+  min-height: 40px;
+  width: 100%;
+
+  .player {
+    flex: 1;
+  }
+}
+
+.player-shift-initiative {
+  &:extend(.column);
+}
+
+.player-buttons {
+  &:extend(.row);
+
+  min-width: 72px;
+
+  .delete-btn {
+    margin: 0 0.5rem 0 0.5rem;
+  }
+}

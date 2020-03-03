@@ -34,7 +34,8 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
         }}
         value={name}
         type="text"
-      ></input>
+      />
+
       <input
         className="input-initiative"
         onChange={({ target }) => {
@@ -48,7 +49,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
         value={initiative}
         type="text"
         inputMode="numeric"
-      ></input>
+      />
     </div>
   );
 };

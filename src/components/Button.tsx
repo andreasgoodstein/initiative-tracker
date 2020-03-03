@@ -1,16 +1,18 @@
 import React from 'react';
 
 import AddPlayerIcon from '../../assets/person-add.svg';
+import DownIcon from '../../assets/chevron-down.svg';
 import NextPlayerIcon from '../../assets/arrow-forward-circle.svg';
 import RemovePlayerIcon from '../../assets/close.svg';
 import ResetIcon from '../../assets/refresh.svg';
+import UpIcon from '../../assets/chevron-up.svg';
 
 import './Button.less';
 import { ButtonType } from '../types/enums';
 
 type ButtonProps = {
   onClick: () => void;
-  type: ButtonType;
+  type?: ButtonType;
   text?: string;
 };
 
@@ -20,6 +22,20 @@ export const Button = ({ onClick, type, text }: ButtonProps) => {
       return (
         <button onClick={onClick}>
           <img src={AddPlayerIcon} alt="add player" />
+        </button>
+      );
+
+    case ButtonType.MoveDown:
+      return (
+        <button className="move-btn" onClick={onClick}>
+          <img src={DownIcon} alt="move player down" />
+        </button>
+      );
+
+    case ButtonType.MoveUp:
+      return (
+        <button className="move-btn" onClick={onClick}>
+          <img src={UpIcon} alt="move player up" />
         </button>
       );
 

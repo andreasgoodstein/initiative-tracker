@@ -1,5 +1,7 @@
+@import '../styles.less';
+
 .input-name {
-  min-width: 180px;
+  min-width: 160px;
 }
 
 .input-initiative {
@@ -8,9 +10,7 @@
 }
 
 .player {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
+  &:extend(.row);
   justify-content: space-evenly;
 
   input {
