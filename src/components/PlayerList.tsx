@@ -13,11 +13,15 @@ import { Counter } from './Counter';
 import { PlayerListItem } from './PlayerListItem';
 
 import './PlayerList.less';
+import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 export const PlayerList = () => {
-  const [playerList, setPlayerList] = useState<Player[]>([]);
-  const [playerTurn, setPlayerTurn] = useState(0);
-  const [roundCount, setRoundCount] = useState(1);
+  const [playerList, setPlayerList] = useLocalStorageState<Player[]>(
+    'playerList',
+    []
+  );
+  const [playerTurn, setPlayerTurn] = useLocalStorageState('playerTurn', 0);
+  const [roundCount, setRoundCount] = useLocalStorageState('roundCount', 1);
 
   const addPlayer = () => {
     setPlayerList([...playerList, createNewPlayer()]);
