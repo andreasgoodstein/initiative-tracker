@@ -1,13 +1,12 @@
 import { v1 as uuidv1 } from 'uuid';
 
 export function createNewPlayer(): IPlayer {
-  const player = {
+  //return new Player object
+  return {
     id: uuidv1(),
     name: '',
     initiative: '',
   };
-
-  return player;
 }
 
 export function getOverlappingInitiativeMap(
