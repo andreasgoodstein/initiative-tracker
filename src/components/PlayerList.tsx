@@ -9,12 +9,13 @@ import {
 } from '../helpers/playerHelper';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
-import { ButtonType } from '../../enums';
-import { Button } from './Button';
 import { Counter } from './Counter';
 import { PlayerListItem } from './PlayerListItem';
 
 import './PlayerList.less';
+import { ResetButton } from './Button/ResetButton';
+import { AddPlayerButton } from './Button/AddPlayerButton';
+import { NextPlayerButton } from './Button/NextPlayerButton';
 
 export const PlayerList = () => {
   const [playerList, setPlayerList] = useLocalStorageState<IPlayer[]>(
@@ -147,9 +148,7 @@ export const PlayerList = () => {
       <div className="round-counter">
         <Counter label="Round" count={roundCount} />
 
-        {roundCount !== 1 && (
-          <Button type={ButtonType.Reset} onClick={resetRoundCount} />
-        )}
+        {roundCount !== 1 && <ResetButton onClick={resetRoundCount} />}
       </div>
 
       <div className="player-list-wrapper">
@@ -161,9 +160,8 @@ export const PlayerList = () => {
         <div className="player-list">{playerElementList}</div>
 
         <div className="buttons">
-          <Button type={ButtonType.AddPlayer} onClick={addPlayer} />
-
-          <Button type={ButtonType.NextPlayer} onClick={nextPlayer} />
+          <AddPlayerButton onClick={addPlayer} />
+          <NextPlayerButton onClick={nextPlayer} />
         </div>
       </div>
     </>

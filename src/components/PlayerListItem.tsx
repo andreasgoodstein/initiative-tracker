@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { ButtonType } from '../../enums';
-import { Button } from './Button';
 import { Player } from './Player';
 
 import './PlayerListItem.less';
+import { MoveUpButton } from './Button/MoveUpButton';
+import { MoveDownButton } from './Button/MoveDownButton';
+import { RemovePlayerButton } from './Button/RemovePlayerButton';
 
 type PlayerListItemProps = {
   hasTurn: boolean;
@@ -23,15 +24,9 @@ export const PlayerListItem = ({
 }: PlayerListItemProps) => {
   const movePlayerElement = movePlayer ? (
     <div className="player-shift-initiative">
-      <Button
-        type={ButtonType.MoveUp}
-        onClick={() => movePlayer(player.id, 'up')}
-      />
+      <MoveUpButton onClick={() => movePlayer(player.id, 'up')} />
 
-      <Button
-        type={ButtonType.MoveDown}
-        onClick={() => movePlayer(player.id, 'down')}
-      />
+      <MoveDownButton onClick={() => movePlayer(player.id, 'down')} />
     </div>
   ) : null;
 
@@ -40,10 +35,7 @@ export const PlayerListItem = ({
       <Player hasTurn={hasTurn} player={player} updatePlayer={updatePlayer} />
 
       <div className="player-buttons">
-        <Button
-          type={ButtonType.RemovePlayer}
-          onClick={() => removePlayer(player.id)}
-        />
+        <RemovePlayerButton onClick={() => removePlayer(player.id)} />
 
         {movePlayerElement}
       </div>
