@@ -11,7 +11,7 @@ type PlayerProps = {
 export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
   const [name, setName] = useState(player.name);
   const [initiative, setInitiative] = useState(player.initiative);
-  const [updateTimeout, setUpdateTimeout] = useState();
+  const [updateTimeout, setUpdateTimeout] = useState<number>();
 
   const changeValueHandler = (newPlayer: Player) => {
     clearTimeout(updateTimeout);
@@ -23,7 +23,9 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
 
   const className = hasTurn ? 'player active' : 'player';
 
-  return initiative === '½' ? (
+  const isJonInput = initiative === '½';
+
+  return isJonInput ? (
     <Jon />
   ) : (
     <div className={className}>
@@ -42,7 +44,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
           changeValueHandler({
             ...player,
             name,
-            initiative: getSanitizedInitiative(target.value)
+            initiative: getSanitizedInitiative(target.value),
           });
         }}
         value={initiative}
