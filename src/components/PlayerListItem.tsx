@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ButtonType } from '../../enums';
 import { Button } from './Button';
 import { Player } from './Player';
 
@@ -7,11 +8,11 @@ import './PlayerListItem.less';
 
 type PlayerListItemProps = {
   hasTurn: boolean;
-  player: Player;
+  player: IPlayer;
 
   movePlayer?: (id: string, moveDirection: string) => void;
   removePlayer: (id: string) => void;
-  updatePlayer: (player: Player) => void;
+  updatePlayer: (player: IPlayer) => void;
 };
 export const PlayerListItem = ({
   hasTurn,

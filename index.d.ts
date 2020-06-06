@@ -1,4 +1,4 @@
-interface Player {
+interface IPlayer {
   id: string;
   name: string;
   initiative: string;
@@ -7,13 +7,4 @@ interface Player {
 declare module '*.svg' {
   const content: string;
   export default content;
-}
-
-declare enum ButtonType {
-  AddPlayer,
-  MoveDown,
-  MoveUp,
-  NextPlayer,
-  RemovePlayer,
-  Reset,
 }

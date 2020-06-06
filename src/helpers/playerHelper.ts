@@ -1,8 +1,8 @@
-import uuid from 'uuid/v1';
+import { v1 as uuidv1 } from 'uuid';
 
-export function createNewPlayer(): Player {
+export function createNewPlayer(): IPlayer {
   const player = {
-    id: uuid(),
+    id: uuidv1(),
     name: '',
     initiative: '',
   };
@@ -11,7 +11,7 @@ export function createNewPlayer(): Player {
 }
 
 export function getOverlappingInitiativeMap(
-  playerList: Player[]
+  playerList: IPlayer[]
 ): Map<string, number> {
   return playerList.reduce((initiativeMap, player) => {
     return player.initiative
@@ -24,9 +24,9 @@ export function getOverlappingInitiativeMap(
 }
 
 export function movePlayerDown(
-  playerList: Player[],
+  playerList: IPlayer[],
   playerIndex: number
-): Player[] {
+): IPlayer[] {
   const newPlayerList = [...playerList];
 
   const movedPlayer = newPlayerList.splice(
@@ -41,9 +41,9 @@ export function movePlayerDown(
 }
 
 export function movePlayerUp(
-  playerList: Player[],
+  playerList: IPlayer[],
   playerIndex: number
-): Player[] {
+): IPlayer[] {
   const newPlayerList = [...playerList];
 
   const movedPlayer = newPlayerList.splice(
@@ -57,7 +57,7 @@ export function movePlayerUp(
   return newPlayerList;
 }
 
-export function sortPlayer(p1: Player, p2: Player): number {
+export function sortPlayer(p1: IPlayer, p2: IPlayer): number {
   const p1Initiative = parseInt(p1.initiative, 10) || 0;
   const p2Initiative = parseInt(p2.initiative, 10) || 0;
 

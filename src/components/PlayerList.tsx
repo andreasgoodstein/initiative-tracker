@@ -7,15 +7,17 @@ import {
   movePlayerDown,
   movePlayerUp,
 } from '../helpers/playerHelper';
+import { useLocalStorageState } from '../hooks/useLocalStorageState';
+
+import { ButtonType } from '../../enums';
 import { Button } from './Button';
 import { Counter } from './Counter';
 import { PlayerListItem } from './PlayerListItem';
 
 import './PlayerList.less';
-import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
 export const PlayerList = () => {
-  const [playerList, setPlayerList] = useLocalStorageState<Player[]>(
+  const [playerList, setPlayerList] = useLocalStorageState<IPlayer[]>(
     'playerList',
     []
   );
@@ -40,7 +42,7 @@ export const PlayerList = () => {
     setPlayerList(playerList.filter((player) => player.id !== id));
   };
 
-  const updatePlayer = (player: Player) => {
+  const updatePlayer = (player: IPlayer) => {
     const indexOfPlayer = playerList.findIndex(
       (oldPlayer) => oldPlayer.id === player.id
     );

@@ -7,6 +7,8 @@ import RemovePlayerIcon from '../../assets/close.svg';
 import ResetIcon from '../../assets/refresh.svg';
 import UpIcon from '../../assets/chevron-up.svg';
 
+import { ButtonType } from '../../enums';
+
 import './Button.less';
 
 type ButtonProps = {

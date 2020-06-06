@@ -5,17 +5,19 @@ import { Jon } from './Jon';
 
 type PlayerProps = {
   hasTurn: boolean;
-  player: Player;
-  updatePlayer: (player: Player) => void;
+  player: IPlayer;
+  updatePlayer: (player: IPlayer) => void;
 };
 export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
   const [name, setName] = useState(player.name);
   const [initiative, setInitiative] = useState(player.initiative);
   const [updateTimeout, setUpdateTimeout] = useState<number>();
 
-  const changeValueHandler = (newPlayer: Player) => {
+  const changeValueHandler = (newPlayer: IPlayer) => {
     clearTimeout(updateTimeout);
-    setUpdateTimeout(setTimeout(() => updatePlayer(newPlayer), 300));
+    setUpdateTimeout(
+      (setTimeout(() => updatePlayer(newPlayer), 300) as unknown) as number
+    );
 
     setName(newPlayer.name);
     setInitiative(newPlayer.initiative);
