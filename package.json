@@ -7,9 +7,10 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html --hmr-port 30000",
-    "build": "npm-run-all -s clean build:parcel",
+    "build": "parcel build src/index.html --out-dir docs --public-url https://andreasgoodstein.github.io/initiative-tracker/",
+    "ci": "npm-run-all -s clean build test",
     "clean": "rimraf docs",
-    "build:parcel": "parcel build src/index.html --out-dir docs --public-url https://andreasgoodstein.github.io/initiative-tracker/"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -25,6 +26,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "jest": "^26.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "throttle-debounce": "^2.1.0",
