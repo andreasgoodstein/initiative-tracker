@@ -1,7 +1,7 @@
 @import '../styles.less';
 
 .input-name {
-  min-width: 160px;
+  min-width: 150px;
 }
 
 .input-initiative {
@@ -14,7 +14,10 @@
   justify-content: space-evenly;
 
   input {
-    border: 2px solid black;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-shadow: 0 0 1px grey;
+    padding: 0.2rem 0.4rem;
   }
 
   input::-webkit-outer-spin-button,
@@ -30,10 +33,7 @@
 
   &.active {
     .input-name {
-      border-left: 4px solid blue;
-    }
-    .input-initiative {
-      border-right: 4px solid blue;
+      box-shadow: 0 0 3px 1px dodgerblue;
     }
   }
 }
