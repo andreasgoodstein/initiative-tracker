@@ -1,18 +1,18 @@
 import uuid from 'uuid/v1';
 
-export const createNewPlayer = (): Player => {
+export function createNewPlayer(): Player {
   const player = {
     id: uuid(),
     name: '',
-    initiative: ''
+    initiative: '',
   };
 
   return player;
-};
+}
 
-export const getOverlappingInitiativeMap = (
+export function getOverlappingInitiativeMap(
   playerList: Player[]
-): Map<string, number> => {
+): Map<string, number> {
   return playerList.reduce((initiativeMap, player) => {
     return player.initiative
       ? initiativeMap.set(
@@ -21,12 +21,12 @@ export const getOverlappingInitiativeMap = (
         )
       : initiativeMap;
   }, new Map<string, number>());
-};
+}
 
-export const movePlayerDown = (
+export function movePlayerDown(
   playerList: Player[],
   playerIndex: number
-): Player[] => {
+): Player[] {
   const newPlayerList = [...playerList];
 
   const movedPlayer = newPlayerList.splice(
@@ -38,12 +38,12 @@ export const movePlayerDown = (
   newPlayerList.splice(playerIndex + 1, 1, movedPlayer);
 
   return newPlayerList;
-};
+}
 
-export const movePlayerUp = (
+export function movePlayerUp(
   playerList: Player[],
   playerIndex: number
-): Player[] => {
+): Player[] {
   const newPlayerList = [...playerList];
 
   const movedPlayer = newPlayerList.splice(
@@ -55,9 +55,9 @@ export const movePlayerUp = (
   newPlayerList.splice(playerIndex - 1, 1, movedPlayer);
 
   return newPlayerList;
-};
+}
 
-export const sortPlayer = (p1: Player, p2: Player): number => {
+export function sortPlayer(p1: Player, p2: Player): number {
   const p1Initiative = parseInt(p1.initiative, 10) || 0;
   const p2Initiative = parseInt(p2.initiative, 10) || 0;
 
@@ -66,4 +66,4 @@ export const sortPlayer = (p1: Player, p2: Player): number => {
     : p1Initiative > p2Initiative
     ? -1
     : 1;
-};
+}

@@ -3,3 +3,5 @@ coverage
 dist
 
 .cache
+
+yarn-error.log

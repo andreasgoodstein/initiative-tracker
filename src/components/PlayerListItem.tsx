@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Button } from './Button';
 import { Player } from './Player';
-import { ButtonType } from '../types/enums';
 
 import './PlayerListItem.less';
 
@@ -19,7 +18,7 @@ export const PlayerListItem = ({
   movePlayer,
   player,
   removePlayer,
-  updatePlayer
+  updatePlayer,
 }: PlayerListItemProps) => {
   const movePlayerElement = movePlayer ? (
     <div className="player-shift-initiative">

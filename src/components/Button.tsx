@@ -8,7 +8,6 @@ import ResetIcon from '../../assets/refresh.svg';
 import UpIcon from '../../assets/chevron-up.svg';
 
 import './Button.less';
-import { ButtonType } from '../types/enums';
 
 type ButtonProps = {
   onClick: () => void;

@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { ButtonType } from '../types/enums';
 import {
   createNewPlayer,
   sortPlayer,
   getOverlappingInitiativeMap,
   movePlayerDown,
-  movePlayerUp
+  movePlayerUp,
 } from '../helpers/playerHelper';
 import { Button } from './Button';
 import { Counter } from './Counter';
@@ -28,7 +27,7 @@ export const PlayerList = () => {
   };
 
   const removePlayer = (id: string) => {
-    const playerIndex = playerList.findIndex(player => player.id === id);
+    const playerIndex = playerList.findIndex((player) => player.id === id);
 
     if (playerList.length <= 2) {
       setPlayerTurn(0);
@@ -38,12 +37,12 @@ export const PlayerList = () => {
       setPlayerTurn(playerList.length - 2);
     }
 
-    setPlayerList(playerList.filter(player => player.id !== id));
+    setPlayerList(playerList.filter((player) => player.id !== id));
   };
 
   const updatePlayer = (player: Player) => {
     const indexOfPlayer = playerList.findIndex(
-      oldPlayer => oldPlayer.id === player.id
+      (oldPlayer) => oldPlayer.id === player.id
     );
 
     const newPlayerList = [...playerList];
@@ -70,7 +69,9 @@ export const PlayerList = () => {
   };
 
   const movePlayer = (playerId: string, moveDirection: string) => {
-    const playerIndex = playerList.findIndex(player => player.id === playerId);
+    const playerIndex = playerList.findIndex(
+      (player) => player.id === playerId
+    );
 
     if (playerIndex < 0) {
       return;
