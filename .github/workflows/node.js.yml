@@ -19,4 +19,5 @@ jobs:
           node-version: 12.x
 
       - run: yarn install --frozen-lockfile
-      - run: yarn run ci
+      - run: yarn run clean
+      - run: yarn run build
