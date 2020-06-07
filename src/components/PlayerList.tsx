@@ -97,7 +97,7 @@ export const PlayerList = () => {
 
         setPlayerList(newPlayerList);
 
-        return;
+        break;
       }
 
       case 'up': {
@@ -116,11 +116,11 @@ export const PlayerList = () => {
 
         setPlayerList(newPlayerList);
 
-        return;
+        break;
       }
 
       default:
-        return;
+        break;
     }
   };
 
@@ -131,6 +131,8 @@ export const PlayerList = () => {
       (initiativeMap.get(player.initiative) || 0) > 1
     );
 
+    const playerItemKey = `${index}-${player.id}`;
+
     return (
       <PlayerListItem
         hasTurn={index === playerTurn}
@@ -138,7 +140,7 @@ export const PlayerList = () => {
         movePlayer={playerInitiativeIsOverlapping ? movePlayer : undefined}
         removePlayer={removePlayer}
         updatePlayer={updatePlayer}
-        key={`${index}-${player.id}`}
+        key={playerItemKey}
       />
     );
   });

@@ -8,16 +8,14 @@ const urlsToCache = [''];
 self.addEventListener('install', (event) => {
   // Perform install steps
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
   );
 });
 
 self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      (async function () {
+      (async () => {
         const normalizedUrl = new URL(event.request.url);
         normalizedUrl.search = '';
 
@@ -25,7 +23,7 @@ self.addEventListener('fetch', (event) => {
         const fetchResponseCloneP = fetchResponseP.then((r) => r.clone());
 
         event.waitUntil(
-          (async function () {
+          (async () => {
             const cache = await caches.open(CACHE_NAME);
             await cache.put(
               normalizedUrl.toString(),

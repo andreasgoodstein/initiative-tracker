@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { PlayerList } from './components/PlayerList';
 
 renderApplication();

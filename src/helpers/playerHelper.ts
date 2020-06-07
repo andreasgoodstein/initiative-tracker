@@ -1,7 +1,7 @@
 import { v1 as uuidv1 } from 'uuid';
 
 export function createNewPlayer(): IPlayer {
-  //return new Player object
+  // return new Player object
   return {
     id: uuidv1(),
     name: '',
@@ -60,9 +60,7 @@ export function sortPlayer(p1: IPlayer, p2: IPlayer): number {
   const p1Initiative = parseInt(p1.initiative, 10) || 0;
   const p2Initiative = parseInt(p2.initiative, 10) || 0;
 
-  return p1Initiative === p2Initiative
-    ? 0
-    : p1Initiative > p2Initiative
-    ? -1
-    : 1;
+  // TODO: Return simple subtraction instead of nested ternary
+  // eslint-disable-next-line no-nested-ternary
+  return p1Initiative - p2Initiative ? 0 : p1Initiative > p2Initiative ? -1 : 1;
 }

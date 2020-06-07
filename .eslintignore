@@ -4,5 +4,3 @@ dist
 docs
 
 .cache
-
-yarn-error.log
