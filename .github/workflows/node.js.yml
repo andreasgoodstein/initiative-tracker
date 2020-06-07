@@ -19,12 +19,12 @@ jobs:
           node-version: 12.x
 
       - name: Install and Build 🔧
-        run: yarn install --frozen-lockfile
-        run: yarn run clean
-        run: mkdir docs
-        run: yarn build
-        run: yarn test
-        run: yarn run lint
+        - run: yarn install --frozen-lockfile
+        - run: yarn run clean
+        - run: mkdir docs
+        - run: yarn build
+        - run: yarn test
+        - run: yarn run lint
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
