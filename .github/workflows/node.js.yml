@@ -24,3 +24,9 @@ jobs:
       - run: yarn build
       - run: yarn test
       - run: yarn run lint
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
