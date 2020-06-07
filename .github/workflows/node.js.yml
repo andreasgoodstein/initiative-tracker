@@ -22,8 +22,6 @@ jobs:
           node-version: 12.x
 
       - run: yarn install --frozen-lockfile
-      - run: yarn run clean
-      - run: mkdir docs
       - run: yarn build
       - run: yarn test
       - run: yarn run lint
@@ -33,4 +31,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          FOLDER: dist # The folder the action should deploy.
