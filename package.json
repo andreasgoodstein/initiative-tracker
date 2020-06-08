@@ -23,7 +23,8 @@
     "*.{ts,tsx}": [
       "eslint",
       "prettier -c"
-    ]
+    ],
+    "*.less": "stylelint"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -51,6 +52,8 @@
     "parcel": "^1.12.4",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
+    "stylelint": "^13.6.0",
+    "stylelint-config-standard": "^20.0.0",
     "ts-jest": "^26.1.0",
     "typescript": "^3.7.5"
   },

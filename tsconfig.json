@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "target": "es5",
+    "jsx": "react",
+    "lib": ["dom", "esnext", "webworker"],
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "esnext", "webworker"],
+    "noEmitOnError": true,
     "strict": true,
-    "jsx": "react"
+    "target": "es5"
   }
 }
