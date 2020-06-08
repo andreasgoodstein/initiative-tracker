@@ -4,7 +4,7 @@ import { PlayerList } from './components/PlayerList';
 
 renderApplication();
 
-// Async import of react-dom for better bundling
+// Async import of react-dom for bundle splitting
 async function renderApplication() {
   const { render } = await import('react-dom');
 
