@@ -8,9 +8,10 @@
   "scripts": {
     "start": "parcel src/index.html --hmr-port 30000",
     "build": "parcel build src/index.html --out-dir dist --public-url https://andreasgoodstein.github.io/initiative-tracker/",
-    "lint": "npm-run-all -p lint:es lint:prettier",
+    "lint": "npm-run-all -p lint:es lint:prettier lint:style",
     "lint:es": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:prettier": "prettier -c .",
+    "lint:style": "stylelint **/*.less",
     "test": "jest --coverage"
   },
   "husky": {
