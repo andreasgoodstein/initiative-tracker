@@ -25,9 +25,9 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
 
   const className = hasTurn ? 'player active' : 'player';
 
-  const isJonInput = initiative === '½';
+  const isInputJon = initiative === '½';
 
-  return isJonInput ? (
+  return isInputJon ? (
     <Jon />
   ) : (
     <div className={className}>

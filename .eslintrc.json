@@ -31,6 +31,10 @@
         "tsx": "never"
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.spec.ts", "**/*.spec.tsx"] }
+    ],
     "import/prefer-default-export": "off",
     "no-use-before-define": ["error", { "functions": false }],
     "react/jsx-filename-extension": [0]

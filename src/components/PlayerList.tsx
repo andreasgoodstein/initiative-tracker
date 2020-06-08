@@ -9,7 +9,7 @@ import {
 } from '../helpers/playerHelper';
 import { useLocalStorageState } from '../hooks/useLocalStorageState';
 
-import { Counter } from './Counter';
+import { Counter } from './Counter/Counter';
 import { PlayerListItem } from './PlayerListItem';
 
 import './PlayerList.less';

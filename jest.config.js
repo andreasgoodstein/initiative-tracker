@@ -8,5 +8,10 @@ module.exports = {
     },
   },
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  setupFilesAfterEnv: ['./jest.setup.ts'],
+  testEnvironment: 'jsdom',
+  transform: {
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub',
+  },
 };
