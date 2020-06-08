@@ -26,13 +26,13 @@ export function movePlayerDown(
   playerList: IPlayer[],
   playerIndex: number
 ): IPlayer[] {
+  if (playerIndex >= playerList.length - 1) {
+    return playerList;
+  }
+
   const newPlayerList = [...playerList];
 
-  const movedPlayer = newPlayerList.splice(
-    playerIndex,
-    1,
-    newPlayerList[playerIndex + 1]
-  )[0];
+  const movedPlayer = newPlayerList.splice(playerIndex, 1)[0];
 
   newPlayerList.splice(playerIndex + 1, 1, movedPlayer);
 
@@ -43,6 +43,10 @@ export function movePlayerUp(
   playerList: IPlayer[],
   playerIndex: number
 ): IPlayer[] {
+  if (playerIndex > playerList.length - 1 || playerIndex === 0) {
+    return playerList;
+  }
+
   const newPlayerList = [...playerList];
 
   const movedPlayer = newPlayerList.splice(
@@ -57,10 +61,12 @@ export function movePlayerUp(
 }
 
 export function sortPlayer(p1: IPlayer, p2: IPlayer): number {
-  const p1Initiative = parseInt(p1.initiative, 10) || 0;
-  const p2Initiative = parseInt(p2.initiative, 10) || 0;
+  const p1Initiative = parseStringToNumberOrZero(p1.initiative);
+  const p2Initiative = parseStringToNumberOrZero(p2.initiative);
 
-  // TODO: Return simple subtraction instead of nested ternary
-  // eslint-disable-next-line no-nested-ternary
-  return p1Initiative - p2Initiative ? 0 : p1Initiative > p2Initiative ? -1 : 1;
+  return p2Initiative - p1Initiative;
+}
+
+function parseStringToNumberOrZero(initiative: string): number {
+  return parseInt(initiative, 10) || 0;
 }
