@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Player } from './Player';
+import { Player } from '../Player/Player';
+
+import { MoveUpButton } from '../Button/MoveUpButton';
+import { MoveDownButton } from '../Button/MoveDownButton';
+import { RemovePlayerButton } from '../Button/RemovePlayerButton';
 
 import './PlayerListItem.less';
-import { MoveUpButton } from './Button/MoveUpButton';
-import { MoveDownButton } from './Button/MoveDownButton';
-import { RemovePlayerButton } from './Button/RemovePlayerButton';
 
 type PlayerListItemProps = {
   hasTurn: boolean;
@@ -31,7 +32,7 @@ export const PlayerListItem = ({
   ) : null;
 
   return (
-    <span className="player-list-item">
+    <li className="player-list-item">
       <Player hasTurn={hasTurn} player={player} updatePlayer={updatePlayer} />
 
       <div className="player-buttons">
@@ -39,6 +40,6 @@ export const PlayerListItem = ({
 
         {movePlayerElement}
       </div>
-    </span>
+    </li>
   );
 };

@@ -6,16 +6,16 @@ import {
   getOverlappingInitiativeMap,
   movePlayerDown,
   movePlayerUp,
-} from '../helpers/playerHelper';
-import { useLocalStorageState } from '../hooks/useLocalStorageState';
+} from '../../helpers/playerHelper';
+import { useLocalStorageState } from '../../hooks/useLocalStorageState';
 
-import { Counter } from './Counter/Counter';
+import { Counter } from '../Counter/Counter';
 import { PlayerListItem } from './PlayerListItem';
+import { ResetButton } from '../Button/ResetButton';
+import { AddPlayerButton } from '../Button/AddPlayerButton';
+import { NextPlayerButton } from '../Button/NextPlayerButton';
 
 import './PlayerList.less';
-import { ResetButton } from './Button/ResetButton';
-import { AddPlayerButton } from './Button/AddPlayerButton';
-import { NextPlayerButton } from './Button/NextPlayerButton';
 
 export const PlayerList = () => {
   const [playerList, setPlayerList] = useLocalStorageState<IPlayer[]>(
@@ -60,7 +60,8 @@ export const PlayerList = () => {
       return;
     }
 
-    if (playerTurn + 1 === playerList.length) {
+    const isNewRound = playerTurn + 1 === playerList.length;
+    if (isNewRound) {
       setRoundCount(roundCount + 1);
     }
 
@@ -76,51 +77,46 @@ export const PlayerList = () => {
       (player) => player.id === playerId
     );
 
-    if (playerIndex < 0) {
+    const playerNotInList = playerIndex < 0;
+    if (playerNotInList) {
       return;
     }
 
-    switch (moveDirection) {
-      case 'down': {
-        if (playerIndex + 1 === playerList.length) {
-          return;
-        }
-
-        if (
-          playerList[playerIndex].initiative !==
-          playerList[playerIndex + 1].initiative
-        ) {
-          return;
-        }
-
-        const newPlayerList = movePlayerDown(playerList, playerIndex);
-
-        setPlayerList(newPlayerList);
-
-        break;
+    if (moveDirection === 'down') {
+      const playerAlreadyLast = playerIndex + 1 >= playerList.length;
+      if (playerAlreadyLast) {
+        return;
       }
 
-      case 'up': {
-        if (playerIndex === 0) {
-          return;
-        }
-
-        if (
-          playerList[playerIndex].initiative !==
-          playerList[playerIndex - 1].initiative
-        ) {
-          return;
-        }
-
-        const newPlayerList = movePlayerUp(playerList, playerIndex);
-
-        setPlayerList(newPlayerList);
-
-        break;
+      const playerCantMoveDown =
+        playerList[playerIndex].initiative !==
+        playerList[playerIndex + 1].initiative;
+      if (playerCantMoveDown) {
+        return;
       }
 
-      default:
-        break;
+      const newPlayerList = movePlayerDown(playerList, playerIndex);
+
+      setPlayerList(newPlayerList);
+      return;
+    }
+
+    if (moveDirection === 'up') {
+      const playerAlreadyFirst = playerIndex === 0;
+      if (playerAlreadyFirst) {
+        return;
+      }
+
+      const playerCantMoveUp =
+        playerList[playerIndex].initiative !==
+        playerList[playerIndex - 1].initiative;
+      if (playerCantMoveUp) {
+        return;
+      }
+
+      const newPlayerList = movePlayerUp(playerList, playerIndex);
+
+      setPlayerList(newPlayerList);
     }
   };
 
@@ -159,7 +155,7 @@ export const PlayerList = () => {
           <span>Initiative</span>
         </div>
 
-        <div className="player-list">{playerElementList}</div>
+        <ul className="player-list">{playerElementList}</ul>
 
         <div className="buttons">
           <AddPlayerButton onClick={addPlayer} />

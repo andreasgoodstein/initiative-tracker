@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 interface IPlayer {
   id: string;
   name: string;

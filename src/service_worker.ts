@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export default null;
 declare const self: ServiceWorkerGlobalScope;
 

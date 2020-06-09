@@ -1,17 +1,18 @@
 module.exports = {
+  collectCoverageFrom: ['**/*.ts', '**/*.tsx'],
   coverageThreshold: {
     global: {
-      statements: 100,
-      branches: 100,
-      functions: 100,
-      lines: 100,
+      statements: 56,
+      branches: 32,
+      functions: 59,
+      lines: 30,
     },
   },
   preset: 'ts-jest',
   setupFilesAfterEnv: ['./jest.setup.ts'],
   testEnvironment: 'jsdom',
   transform: {
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
+    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$':
       'jest-transform-stub',
   },
 };

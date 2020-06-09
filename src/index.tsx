@@ -1,6 +1,8 @@
+/* istanbul ignore file */
+
 import React from 'react';
 
-import { PlayerList } from './components/PlayerList';
+import { PlayerList } from './components/PlayerList/PlayerList';
 
 renderApplication();
 

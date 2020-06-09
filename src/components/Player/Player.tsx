@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import './Player.less';
 import { Jon } from './Jon';
+
+import './Player.less';
 
 type PlayerProps = {
   hasTurn: boolean;
@@ -36,6 +37,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
         onChange={({ target }) => {
           changeValueHandler({ ...player, name: target.value, initiative });
         }}
+        placeholder="Name"
         value={name}
         type="text"
       />
@@ -49,6 +51,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
             initiative: getSanitizedInitiative(target.value),
           });
         }}
+        placeholder="Init"
         value={initiative}
         type="number"
       />
