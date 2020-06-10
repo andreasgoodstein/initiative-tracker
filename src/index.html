@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline';"
+    />
+
     <title>Initiative Tracker™</title>
 
     <link href="../assets/favicon.ico" rel="icon" type="image/x-icon" />
@@ -28,6 +33,21 @@
       h1 {
         font-size: 1.3rem;
       }
+
+      .loading {
+        animation: loading 1s linear infinite alternate;
+        font-size: 3rem;
+      }
+
+      @keyframes loading {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0.1;
+        }
+      }
     </style>
   </head>
   <body>
@@ -36,7 +56,7 @@
     </header>
 
     <main>
-      <div id="root"></div>
+      <div id="root"><span class="loading">o</span></div>
     </main>
 
     <script defer src="./index.tsx"></script>
