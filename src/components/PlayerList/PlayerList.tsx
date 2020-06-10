@@ -32,6 +32,11 @@ export const PlayerList = () => {
   const removePlayer = (id: string) => {
     const playerIndex = playerList.findIndex((player) => player.id === id);
 
+    const playerNotInList = playerIndex < 0;
+    if (playerNotInList) {
+      return;
+    }
+
     if (playerList.length <= 2) {
       setPlayerTurn(0);
     } else if (playerIndex < playerTurn) {

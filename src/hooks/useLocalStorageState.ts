@@ -1,24 +1,23 @@
 import { useState } from 'react';
 
-const storageProvider =
-  typeof window !== 'undefined' && window.localStorage
-    ? window.localStorage
-    : { getItem: () => {}, setItem: () => {} };
+import { getLocalStorage } from '../persistance/localStorage';
 
 export const useLocalStorageState = <T>(
   storageKey: string,
   initialValue: T
 ): [T, (value: T) => void] => {
+  const localStorage = getLocalStorage();
+
   const [getStoredValue, setStoredValue] = useState<T>(() => {
-    const value = storageProvider.getItem(storageKey);
+    const value = localStorage.getItem(storageKey);
 
     return value ? JSON.parse(value) : initialValue;
   });
 
   const storeValue = (value: T) => {
-    setStoredValue(value);
+    localStorage.setItem(storageKey, JSON.stringify(value));
 
-    storageProvider.setItem(storageKey, JSON.stringify(value));
+    setStoredValue(value);
   };
 
   return [getStoredValue, storeValue];

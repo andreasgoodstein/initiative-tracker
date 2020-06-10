@@ -14,6 +14,11 @@ interface ITextButtonProps extends IButtonProps {
   text: string;
 }
 
+interface IStorageProvider {
+  getItem: (key: string) => string | null;
+  setItem: (key: string, value: string) => void;
+}
+
 declare module '*.svg' {
   const content: string;
   export default content;

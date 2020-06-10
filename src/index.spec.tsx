@@ -85,6 +85,69 @@ describe('the initiative-tracker application', () => {
     expect(() => screen.getByPlaceholderText('Init')).toThrow();
   });
 
+  it('keep turn with current player if previous player is removed', () => {
+    render(<PlayerList />);
+
+    const addPlayerButton = screen.getByAltText('add player');
+    const nextPlayerButton = screen.getByAltText('next player');
+
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+
+    const playerDeleteButtonList = screen.getAllByAltText('remove player');
+
+    fireEvent.click(nextPlayerButton);
+
+    expect(window.localStorage.getItem('playerTurn')).toBe('1');
+
+    fireEvent.click(playerDeleteButtonList[0]);
+
+    expect(window.localStorage.getItem('playerTurn')).toBe('0');
+  });
+
+  it('sets playerTurn to new last player if current last player has turn and is removed', () => {
+    render(<PlayerList />);
+
+    const addPlayerButton = screen.getByAltText('add player');
+    const nextPlayerButton = screen.getByAltText('next player');
+
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+
+    const playerDeleteButtonList = screen.getAllByAltText('remove player');
+
+    fireEvent.click(nextPlayerButton);
+    fireEvent.click(nextPlayerButton);
+
+    expect(window.localStorage.getItem('playerTurn')).toBe('2');
+
+    fireEvent.click(playerDeleteButtonList[2]);
+
+    expect(window.localStorage.getItem('playerTurn')).toBe('1');
+  });
+
+  it('next player button does nothing if no players are present', () => {
+    render(<PlayerList />);
+
+    const roundCounterElement = document.querySelector(
+      '.round-counter'
+    ) as HTMLElement;
+
+    const nextTurnButton = screen.getByAltText('next player');
+
+    expect(getByText(roundCounterElement, '1')).toBeInTheDocument();
+    expect(window.localStorage.getItem('roundCount')).toBeNull();
+    expect(window.localStorage.getItem('playerTurn')).toBeNull();
+
+    fireEvent.click(nextTurnButton);
+    fireEvent.click(nextTurnButton);
+    expect(getByText(roundCounterElement, '1')).toBeInTheDocument();
+    expect(window.localStorage.getItem('roundCount')).toBeNull();
+    expect(window.localStorage.getItem('playerTurn')).toBeNull();
+  });
+
   it('increments and round counter every time the top player starts its turn, and stores player turn and round count in localStorage', () => {
     render(<PlayerList />);
 
@@ -245,5 +308,124 @@ describe('the initiative-tracker application', () => {
     expect(
       (screen.getAllByPlaceholderText('Name')[1] as HTMLInputElement).value
     ).toBe('b');
+
+    fireEvent.click(screen.getAllByAltText('move player up')[0]);
+    expect(
+      (screen.getAllByPlaceholderText('Name')[0] as HTMLInputElement).value
+    ).toBe('a');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[1] as HTMLInputElement).value
+    ).toBe('b');
+  });
+
+  it('players cant be moved above or below their set initiative score', async () => {
+    render(<PlayerList />);
+
+    const addPlayerButton = screen.getByAltText('add player');
+
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+    fireEvent.click(addPlayerButton);
+
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Name')[0], {
+        target: { value: 'top' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Init')[0], {
+        target: { value: '3' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Name')[1], {
+        target: { value: 'a' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Init')[1], {
+        target: { value: '2' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Name')[2], {
+        target: { value: 'b' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Init')[2], {
+        target: { value: '2' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Name')[3], {
+        target: { value: 'bottom' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+    await act(async () => {
+      fireEvent.change(screen.getAllByPlaceholderText('Init')[3], {
+        target: { value: '1' },
+      });
+
+      await new Promise((r) => setTimeout(() => r(), 305));
+    });
+
+    expect(
+      (screen.getAllByPlaceholderText('Name')[0] as HTMLInputElement).value
+    ).toBe('top');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[1] as HTMLInputElement).value
+    ).toBe('a');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[2] as HTMLInputElement).value
+    ).toBe('b');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[3] as HTMLInputElement).value
+    ).toBe('bottom');
+
+    fireEvent.click(screen.getAllByAltText('move player up')[0]);
+    expect(
+      (screen.getAllByPlaceholderText('Name')[0] as HTMLInputElement).value
+    ).toBe('top');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[1] as HTMLInputElement).value
+    ).toBe('a');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[2] as HTMLInputElement).value
+    ).toBe('b');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[3] as HTMLInputElement).value
+    ).toBe('bottom');
+
+    fireEvent.click(screen.getAllByAltText('move player down')[1]);
+    expect(
+      (screen.getAllByPlaceholderText('Name')[0] as HTMLInputElement).value
+    ).toBe('top');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[1] as HTMLInputElement).value
+    ).toBe('a');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[2] as HTMLInputElement).value
+    ).toBe('b');
+    expect(
+      (screen.getAllByPlaceholderText('Name')[3] as HTMLInputElement).value
+    ).toBe('bottom');
   });
 });
