@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { Jon } from './Jon';
-
 import './Player.less';
 
 type PlayerProps = {
@@ -26,11 +24,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
 
   const className = hasTurn ? 'player active' : 'player';
 
-  const isInputJon = initiative === '½';
-
-  return isInputJon ? (
-    <Jon />
-  ) : (
+  return (
     <div className={className}>
       <input
         className="input-name"
@@ -60,5 +54,5 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
 };
 
 function getSanitizedInitiative(initiative: string): string {
-  return initiative.replace(/[^0-9½]+/g, '');
+  return initiative.replace(/[^0-9]+/g, '');
 }
