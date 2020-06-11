@@ -9,9 +9,9 @@ import {
 jest.mock('uuid', () => ({ v1: () => 'testUUID' }));
 
 const testPlayerList: IPlayer[] = [
-  { id: '1', initiative: '1', name: '1' },
-  { id: '2', initiative: '2', name: '2' },
-  { id: '3', initiative: '2', name: '3' },
+  { id: '1', initiative: '1', canMove: false, name: '1' },
+  { id: '2', initiative: '2', canMove: false, name: '2' },
+  { id: '3', initiative: '2', canMove: false, name: '3' },
 ];
 
 describe('the createNewPlayer method', () => {
@@ -19,9 +19,10 @@ describe('the createNewPlayer method', () => {
     const newPlayer = createNewPlayer();
 
     expect(newPlayer).toBeInstanceOf(Object);
+    expect(newPlayer.canMove).toBeFalsy();
     expect(newPlayer.id).toBe('testUUID');
-    expect(newPlayer.name).toBe('');
     expect(newPlayer.initiative).toBe('');
+    expect(newPlayer.name).toBe('');
   });
 });
 
@@ -52,7 +53,10 @@ describe('the getOverlappingInitiativeMap method', () => {
   });
 
   it('input including player with no initiative does not change resulting map', () => {
-    const input = [...testPlayerList, { id: '4', name: '4', initiative: '' }];
+    const input = [
+      ...testPlayerList,
+      { canMove: false, id: '4', initiative: '', name: '4' },
+    ];
 
     const map = getOverlappingInitiativeMap(input);
 
@@ -81,11 +85,13 @@ describe('the movePlayerDown method', () => {
   it('given input with more than one element it returns array with selected index element moved to next position in array', () => {
     const input = [...testPlayerList];
 
-    const result = movePlayerDown(input, 1);
+    let result = movePlayerDown(input, 0);
+    result = movePlayerDown(result, 1);
 
-    expect(result[0]).toEqual(input[0]);
+    expect(result.length).toBe(3);
+    expect(result[0]).toEqual(input[1]);
     expect(result[1]).toEqual(input[2]);
-    expect(result[2]).toEqual(input[1]);
+    expect(result[2]).toEqual(input[0]);
   });
 
   it('moving the last element in array returns copy of input array', () => {
@@ -101,7 +107,7 @@ describe('the movePlayerUp method', () => {
   it('given input with index out of bounds it return copy of input array', () => {
     const input = [...testPlayerList].slice(0, 1);
 
-    const result = movePlayerUp(input, 1);
+    const result = movePlayerUp(input, 2);
 
     expect(result).toEqual(input);
   });
@@ -117,11 +123,13 @@ describe('the movePlayerUp method', () => {
   it('given input with more than one element it returns array with selected index element moved to previous position in array', () => {
     const input = [...testPlayerList];
 
-    const result = movePlayerUp(input, 1);
+    let result = movePlayerUp(input, 2);
+    result = movePlayerUp(result, 1);
 
-    expect(result[0]).toEqual(input[1]);
+    expect(result.length).toBe(3);
+    expect(result[0]).toEqual(input[2]);
     expect(result[1]).toEqual(input[0]);
-    expect(result[2]).toEqual(input[2]);
+    expect(result[2]).toEqual(input[1]);
   });
 
   it('moving the first element in array returns copy of input array', () => {
@@ -154,8 +162,8 @@ describe('the sortPlayer method', () => {
 
   it('sorts players with no initiative as having initiative 0', () => {
     const result = sortPlayer(
-      { id: '1', name: '1', initiative: '' },
-      { id: '2', name: '2', initiative: '0' }
+      { canMove: false, id: '1', name: '1', initiative: '' },
+      { canMove: false, id: '2', name: '2', initiative: '0' }
     );
 
     expect(result).toBe(0);

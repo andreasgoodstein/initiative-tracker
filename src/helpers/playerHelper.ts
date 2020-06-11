@@ -3,9 +3,10 @@ import { v1 as uuidv1 } from 'uuid';
 export function createNewPlayer(): IPlayer {
   // return new Player object
   return {
+    canMove: false,
     id: uuidv1(),
-    name: '',
     initiative: '',
+    name: '',
   };
 }
 
@@ -32,7 +33,11 @@ export function movePlayerDown(
 
   const newPlayerList = [...playerList];
 
-  const movedPlayer = newPlayerList.splice(playerIndex, 1)[0];
+  const movedPlayer = newPlayerList.splice(
+    playerIndex,
+    1,
+    newPlayerList[playerIndex + 1]
+  )[0];
 
   newPlayerList.splice(playerIndex + 1, 1, movedPlayer);
 
