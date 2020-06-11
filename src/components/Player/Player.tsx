@@ -45,6 +45,7 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
             initiative: getSanitizedInitiative(target.value),
           });
         }}
+        pattern="[0-9]"
         placeholder="Init"
         value={initiative}
         type="number"
