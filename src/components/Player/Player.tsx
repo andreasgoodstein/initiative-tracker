@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useUpdateTimeout } from '../../hooks/useUpdateTimeout';
 
 import './Player.less';
 
@@ -8,19 +10,10 @@ type PlayerProps = {
   updatePlayer: (player: IPlayer) => void;
 };
 export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
-  const [name, setName] = useState(player.name);
-  const [initiative, setInitiative] = useState(player.initiative);
-  const [updateTimeout, setUpdateTimeout] = useState<number>();
-
-  const changeValueHandler = (newPlayer: IPlayer) => {
-    clearTimeout(updateTimeout);
-    setUpdateTimeout(
-      (setTimeout(() => updatePlayer(newPlayer), 300) as unknown) as number
-    );
-
-    setName(newPlayer.name);
-    setInitiative(newPlayer.initiative);
-  };
+  const [playerValue, changePlayer] = useUpdateTimeout<IPlayer>(
+    player,
+    updatePlayer
+  );
 
   const className = hasTurn ? 'player active' : 'player';
 
@@ -29,31 +22,30 @@ export const Player = ({ hasTurn, player, updatePlayer }: PlayerProps) => {
       <input
         className="input-name"
         onChange={({ target }) => {
-          changeValueHandler({ ...player, name: target.value, initiative });
+          changePlayer({ ...playerValue, name: target.value });
         }}
         placeholder="Name"
-        value={name}
+        value={playerValue.name}
         type="text"
       />
 
       <input
         className="input-initiative"
         onChange={({ target }) => {
-          changeValueHandler({
-            ...player,
-            name,
-            initiative: getSanitizedInitiative(target.value),
+          changePlayer({
+            ...playerValue,
+            initiative: sanitizeNonNumbers(target.value),
           });
         }}
         pattern="[0-9]"
         placeholder="Init"
-        value={initiative}
+        value={playerValue.initiative}
         type="number"
       />
     </div>
   );
 };
 
-function getSanitizedInitiative(initiative: string): string {
+function sanitizeNonNumbers(initiative: string): string {
   return initiative.replace(/[^0-9]+/g, '');
 }

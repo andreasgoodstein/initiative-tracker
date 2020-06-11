@@ -32,6 +32,8 @@ interface IUsePlayerList {
   updatePlayer: (player: IPlayer) => void;
 }
 
+type Timeout = ReturnType<typeof setTimeout>;
+
 declare module '*.svg' {
   const content: string;
   export default content;
