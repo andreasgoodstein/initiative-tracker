@@ -30,7 +30,7 @@ export const PlayerList = () => {
       movePlayer={player.canMove ? movePlayer : undefined}
       removePlayer={removePlayer}
       updatePlayer={updatePlayer}
-      key={`${player.id}-${player.initiative}`}
+      key={player.id}
     />
   ));
 
