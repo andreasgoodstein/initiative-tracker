@@ -62,8 +62,7 @@ async function asyncUpdateCacheWithLatestResponse(
     return;
   }
 
-  const cache = await caches.open(CACHE_NAME);
-  await cache.put(urlString, response);
+  updateCachedResponse(urlString, response);
 
   sendUpdateMessageToClient(clientId);
 }
@@ -84,6 +83,11 @@ async function cachedResponseIsCurrent(
   ]);
 
   return storedText === responseText;
+}
+
+async function updateCachedResponse(urlString: string, response: Response) {
+  const cache = await caches.open(CACHE_NAME);
+  await cache.put(urlString, response);
 }
 
 async function sendUpdateMessageToClient(clientId: string) {
