@@ -62,9 +62,9 @@ async function asyncUpdateCacheWithLatestResponse(
     return;
   }
 
-  updateCachedResponse(urlString, response);
+  await updateCachedResponse(urlString, response);
 
-  sendUpdateMessageToClient(clientId);
+  await sendUpdateMessageToClient(clientId);
 }
 
 async function cachedResponseIsCurrent(
