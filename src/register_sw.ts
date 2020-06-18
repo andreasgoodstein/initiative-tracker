@@ -1,5 +1,6 @@
-import { CAN_UPDATE_KEY } from './config';
 /* istanbul ignore file */
+
+import { CAN_UPDATE_KEY } from './config';
 
 import { showUpdateModal } from './helpers/pwaHelper';
 
