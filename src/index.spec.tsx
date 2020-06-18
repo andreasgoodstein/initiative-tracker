@@ -1,6 +1,8 @@
 import React from 'react';
 import { fireEvent, getByText, render, screen } from '@testing-library/react';
 
+// eslint has trouble with node_modules dependencies for some reason
+// eslint-disable-next-line import/no-unresolved
 import { act } from 'react-dom/test-utils';
 import { PlayerList } from './components/PlayerList/PlayerList';
 
