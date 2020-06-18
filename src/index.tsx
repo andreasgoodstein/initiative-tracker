@@ -4,6 +4,8 @@ import React from 'react';
 
 import { PlayerList } from './components/PlayerList/PlayerList';
 
+import './index.less';
+
 renderApplication();
 
 // Async import of react-dom for bundle splitting

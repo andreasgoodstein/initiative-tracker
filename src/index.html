@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Initiative Tracker™</title>
+
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' ws:;"
     />
-
-    <title>Initiative Tracker™</title>
 
     <link href="../assets/favicon.ico" rel="icon" type="image/x-icon" />
     <link href="./manifest.webmanifest" rel="manifest" />
@@ -36,7 +36,6 @@
 
       .loading {
         animation: loading 1s linear infinite alternate;
-        font-size: 3rem;
       }
 
       @keyframes loading {
@@ -56,7 +55,11 @@
     </header>
 
     <main>
-      <div id="root"><span class="loading">o</span></div>
+      <div id="update-modal" class="updater">
+        <a href="">Update</a>
+      </div>
+
+      <section id="root"><span class="loading">o</span></section>
     </main>
 
     <script defer src="./index.tsx"></script>
