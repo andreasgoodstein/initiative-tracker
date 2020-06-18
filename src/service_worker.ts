@@ -35,7 +35,7 @@ async function asyncReturnThenUpdateCacheResource(event: FetchEvent) {
     asyncUpdateCacheWithLatestResponse(
       urlString,
       responsePromiseClone,
-      event.clientId || event.resultingClientId
+      event.resultingClientId || event.clientId
     )
   );
 
@@ -58,26 +58,24 @@ async function asyncUpdateCacheWithLatestResponse(
   const response = await responsePromise;
   const responseToCompare = response.clone();
 
-  const cacheIsOutdated = await responseHasUpdated(
-    urlString,
-    responseToCompare
-  );
-  if (cacheIsOutdated) {
-    postMessageToClient(clientId);
+  if (await cachedResponseIsCurrent(urlString, responseToCompare)) {
+    return;
   }
 
   const cache = await caches.open(CACHE_NAME);
   await cache.put(urlString, response);
+
+  sendUpdateMessageToClient(clientId);
 }
 
-async function responseHasUpdated(
+async function cachedResponseIsCurrent(
   urlString: string,
   response: Response
 ): Promise<Boolean> {
   const storedResponse = await caches.match(urlString);
 
   if (!storedResponse) {
-    return true;
+    return false;
   }
 
   const [storedText, responseText] = await Promise.all([
@@ -85,10 +83,10 @@ async function responseHasUpdated(
     response.text(),
   ]);
 
-  return storedText !== responseText;
+  return storedText === responseText;
 }
 
-async function postMessageToClient(clientId: string) {
+async function sendUpdateMessageToClient(clientId: string) {
   const client = (await self.clients.get(clientId)) as WindowClient;
 
   if (client) {
